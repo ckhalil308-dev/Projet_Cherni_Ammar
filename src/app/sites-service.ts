@@ -22,6 +22,19 @@ export class SitesService {
   getSites(): Sites[] {
     return this.sites;
   }
+  addSite(site: Sites): void {
+    this.sites.push(site);
+
+
+}
+removeSite(site: Sites): void {
+    const index = this.sites.indexOf(site);
+    if (index > -1) {
+      this.sites.splice(index, 1);
+    } 
+}
+
+
 
 
 }

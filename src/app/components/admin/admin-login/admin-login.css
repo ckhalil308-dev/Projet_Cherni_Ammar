@@ -1,0 +1,9 @@
+.btn{
+    transition: transform 0.3s ease;
+    letter-spacing: 2px;
+  
+
+}
+.btn:hover{
+    transform: scale(1.05);
+}

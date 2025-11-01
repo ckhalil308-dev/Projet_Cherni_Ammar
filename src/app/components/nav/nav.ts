@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })

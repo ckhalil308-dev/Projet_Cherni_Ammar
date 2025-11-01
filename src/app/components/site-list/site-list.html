@@ -1,1 +1,8 @@
 <p>site-list works!</p>
+
+
+<ul>
+    @for(site of siteList; track $index){
+        <app-site-content [site]="site"></app-site-content>
+    }
+</ul>

@@ -13,5 +13,5 @@ export interface Sites {
     openingHours?: string;
     visitorsPerYear?: number;
     comments?: Commentaires[];
-    
+    gallery?: string[];
 }

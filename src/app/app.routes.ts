@@ -5,6 +5,7 @@ import { Error } from './components/error/error';
 import { Admindashboard } from './components/admin/admindashboard/admindashboard';
 import { Contact } from './components/contact/contact';
 import { SiteList } from './components/site-list/site-list';
+import { Changepasswords } from './components/admin/changepasswords/changepasswords';
 
 
 export const routes: Routes = [
@@ -13,7 +14,8 @@ export const routes: Routes = [
       { path:'siteList', title:"Sites", component:SiteList},
      
       { path:'admin', title:"Admin", component:AdminLogin},
-      { path:'admindash', title:"Admin", component:Admindashboard},
+      { path:'admindash', title:"Adminpass", component:Admindashboard},
+         { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'',component: Home },
       
       { path: '**', component: Error }

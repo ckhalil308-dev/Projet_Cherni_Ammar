@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admin-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './admin-login.html',
   styleUrl: './admin-login.css',
 })
@@ -14,7 +14,7 @@ export class AdminLogin {
   password:String=''; 
   router:Router=inject(Router);
   UserName:string='admin';
-  Password:string='admin123';
+  Password:string='admin@123';
   d:string='';
     private snackBar: MatSnackBar = inject(MatSnackBar);
   login(){

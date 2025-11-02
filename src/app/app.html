@@ -1,2 +1,10 @@
-<app-nav></app-nav>
+
+
+@if (nav()) {
+    <app-admin-nav></app-admin-nav>
+}
+@else {
+    <app-nav></app-nav>
+
+}
 <router-outlet></router-outlet>

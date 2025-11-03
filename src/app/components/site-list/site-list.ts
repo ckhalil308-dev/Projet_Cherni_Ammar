@@ -11,10 +11,20 @@ import { SitesService } from '../../services/sites-service';
 })
 export class SiteList implements OnInit {
   siteList: Sites[]=[];
-  private siteService: SitesService=inject(SitesService);
-  ngOnInit(): void {
-    this.siteList=this.siteService.getSites();
+
+  private siteService=inject(SitesService);
+
+  ngOnInit(){
+      this.siteService.getSites().subscribe({
+        next: (data)=>{
+          this.siteList=data;
+        },
+        error: (err)=>{
+          console.error('Error fetching sites:', err);
+        },
+      });
   }
+
 
 
 }

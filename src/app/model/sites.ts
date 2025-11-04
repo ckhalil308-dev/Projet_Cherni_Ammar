@@ -8,7 +8,7 @@ export interface Sites {
     adresse: string;
     price: number;
     open: boolean;
-    creation_date: Date;
+    creation_date: string;
     rating?: number;
     openingHours?: string;
     visitorsPerYear?: number;

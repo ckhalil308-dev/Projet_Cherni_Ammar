@@ -1,5 +1,11 @@
-<br>
-{{site.id}} : 
-{{site.title}} - {{site.era}} - {{site.adresse}} - {{site.price}} DT
-<img src="{{site.imageUrl}}" alt="{{site.title}}" width="200">
 
+
+<div class="card " style="width: 18rem;">
+  <img [src]="site.imageUrl" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{site.title}}</h5>
+      <p class="card-text">nombre visiteures : {{site.visitorsPerYear}}</p>
+    <p class="card-text">rating  {{site.rating}}</p>
+    <a href="#" class="btn btn-primary">info</a>
+  </div>
+</div>

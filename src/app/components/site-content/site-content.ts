@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { Sites } from '../../model/sites';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-site-content',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './site-content.html',
   styleUrl: './site-content.css',
 })

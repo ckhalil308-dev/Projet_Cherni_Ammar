@@ -22,7 +22,7 @@ export class SiteList implements OnInit {
         error: (err)=>{
           console.error('Error fetching sites:', err);
         },
-      });
+      });      
   }
 
 

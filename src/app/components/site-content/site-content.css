@@ -63,7 +63,7 @@
   font-size: 0.85rem;
   padding: 7px 15px;
   border-radius: 6px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+   background-color: black;
   border: none;
   color: #fff;
   font-weight: 500;
@@ -71,8 +71,8 @@
 }
 
 .site-card .btn:hover {
-  transform: scale(1.05) translateY(-2px);
+  transform: scale(1.02) translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  background: linear-gradient(135deg, #2575fc, #6a11cb); /* color shift */
+  background-color: rgb(64, 64, 64);
 }
     

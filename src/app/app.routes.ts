@@ -6,16 +6,17 @@ import { Admindashboard } from './components/admin/admindashboard/admindashboard
 import { Contact } from './components/contact/contact';
 import { SiteList } from './components/site-list/site-list';
 import { Changepasswords } from './components/admin/changepasswords/changepasswords';
+import { SiteSelected } from './components/site-selected/site-selected';
 
 
 export const routes: Routes = [
       { path:'home', title:"Home", component: Home },
       { path:'contact', title:"Contact", component:Contact},
       { path:'siteList', title:"Sites", component:SiteList},
-     
+      { path:'siteselected/:idsite', title:"Sites", component:SiteSelected}, 
       { path:'admin', title:"Admin", component:AdminLogin},
       { path:'admindash', title:"Adminpass", component:Admindashboard},
-         { path:'changepassword', title:"Adminchange", component:Changepasswords},
+      { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'',component: Home },
       
       { path: '**', component: Error }

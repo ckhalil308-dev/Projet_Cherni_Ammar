@@ -1,0 +1,78 @@
+/* Wrapper: equal height + flex layout */
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  align-items: stretch; /* ensures all cards are same height */
+}
+
+/* Card styling */
+.site-card {
+  width: 18rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 10px;
+}
+
+.site-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.25); /* stronger shadow on hover */
+}
+
+/* Image: fixed height + cover to prevent stretching */
+.site-card .card-img-top {
+  height: 200px; /* fixed height */
+  object-fit: cover; /* scales and crops nicely */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Card body: equal height */
+.site-card .card-body {
+  padding: 15px;
+  flex: 1; /* stretch all card-bodies equally */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card title */
+.site-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Card text */
+.site-card .card-text {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* Button: nice styling + hover animation */
+.site-card .btn {
+  margin-top: auto; /* pushes button to bottom */
+  font-size: 0.85rem;
+  padding: 7px 15px;
+  border-radius: 6px;
+   background-color: black;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.site-card .btn:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background-color: rgb(64, 64, 64);
+}
+    

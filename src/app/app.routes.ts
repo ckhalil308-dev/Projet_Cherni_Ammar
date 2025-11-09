@@ -19,12 +19,10 @@ export const routes: Routes = [
       { path:'admindash', title:"Dashboard", component:Admindashboard,
             children: [
               { path:'comments', title:'Comments', component:AdminComments},
-              { path:'',component: Admindashboard },
-              { path:'', redirectTo:'home', pathMatch:'full' },
-              { path: '**', title:'Error', component: Error }
+              { path:'', redirectTo:'comments', pathMatch:'full' }
             ]
       },
       { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'', redirectTo:'home', pathMatch:'full' },
       { path: '**', title:'Error', component: Error }
-];
+]; 

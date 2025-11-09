@@ -86,7 +86,7 @@ p {
 }
 
 .carousel {
-  width: 600px; /* max width for large screens */
+  width: 800px; /* max width for large screens */
   max-width: 100%;
   border-radius: 10px;
   overflow: hidden;
@@ -121,7 +121,7 @@ p {
 }
 
 .list-group-item h5 {
-  color: #0056b3;
+  color: #060606;
 }
 
 .list-group-item small {

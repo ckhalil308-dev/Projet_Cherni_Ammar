@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center m-3">
-    <form class="d-flex" style="width: 600px;">
+    <form class="d-flex gap-3" style="width: 600px; ">
         <input (input)="rechercherSite()" name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search"
             placeholder="Search" id="search" />
 
@@ -20,7 +20,7 @@
 </div>
 
 
-<div class="container2">
+<div class="container2 mt-5">
     <div class=" container">
         @for(site of siteFiltered; track $index){
         <app-site-content [site]="site"></app-site-content>

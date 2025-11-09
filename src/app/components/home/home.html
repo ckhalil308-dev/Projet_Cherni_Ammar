@@ -1,9 +1,44 @@
-<div class="containe">
-  <video autoplay [muted]="true" loop playsinline >
+<div class="cont d-flex justify-content-center align-items-center position-relative">
+  <video autoplay [muted]="true" loop playsinline class="video-bg">
     <source src="video/vid2.mp4" type="video/mp4" />
   </video>
- 
+
+  <!-- Text overlay -->
+  <div class="video-text position-absolute text-start">
+    <h1>Discover Tunisia</h1>
+    <p>Where ancient history meets stunning modern landscapes.</p>
+  </div>
 </div>
 
-<app-features></app-features>
+
+<app-features class="mt-0" [class]="{
+  sec2:true
+}" ></app-features>
+
+<div class="sec2 d-flex gap-5 justify-content-center ">
+  <div class="sec2-img">
+    <img src="sites/amphitheatre/1.jpg" alt="Ancient Tunisia">
+  </div>
+  <div class="sec2-text">
+    <h6>
+      Discover the fascinating history of <strong>Carthage</strong>, <strong>Dougga</strong>, and other iconic archaeological sites.<br><br>
+      Wander through ancient ruins, admire monumental architecture, and imagine the daily life of the civilizations 
+      that shaped Tunisia’s rich and diverse cultural heritage over the centuries.
+    </h6>
+  </div>
+</div>
+
+<div class="sec2 d-flex gap-5 justify-content-center align-items-center flex-row-reverse">
+  <div class="sec2-img">
+    <img src="sites/amphitheatre/2.jpg" alt="Cultural Tunisia">
+  </div>
+  <div class="sec2-text">
+    <h6>
+      Experience the vibrant traditions, local customs, and cultural practices that keep Tunisia’s heritage alive today.<br><br>
+      From festivals to artisanal crafts, immerse yourself in the living culture that connects the country’s rich archaeological past with its dynamic present.
+    </h6>
+  </div>
+</div>
+
+
 

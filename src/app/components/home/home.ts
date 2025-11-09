@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Features } from "../../features/features";
 
@@ -8,6 +8,20 @@ import { Features } from "../../features/features";
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
+export class Home implements AfterViewInit {
+ private el = inject(ElementRef);
 
+ 
+  ngAfterViewInit() {
+    const observer = new IntersectionObserver(entries =>
+      entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'))
+    );
+
+    this.el.nativeElement
+      .querySelectorAll('.sec2')
+      .forEach((sec: Element) => observer.observe(sec));
+  }
 }
+// Smooth fade-in when scrolling into view
+
+

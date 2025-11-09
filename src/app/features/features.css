@@ -1,27 +1,63 @@
+/* FEATURES SECTION */
 .features {
+  background-color: #f8f9fa;
+  font-family: 'Poppins', sans-serif; /* modern font */
+}
+
+.features .card {
+  border-radius: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.features .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 55px rgba(0.5, 0.2, 0.2, 0.9);
+}
+
+.features .card-body {
   display: flex;
-  justify-content: space-around;
-  align-items: start;
-  padding: 60px 10%;
-  background: #f8f8f8;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.features .card-body img {
+  border-radius: 5%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.features .card-body h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #212529;
+  margin-bottom: 0.8rem;
   text-align: center;
 }
 
-.feature {
-  width: 30%;
+.features .card-body p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #6c757d;
+  text-align: center;
+  line-height: 1.6;
 }
 
-.feature img {
-  width: 80px;
-  margin-bottom: 20px;
+/* Fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.feature h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-
-.feature p {
-  color: #555;
-  line-height: 1.5;
+h2{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }

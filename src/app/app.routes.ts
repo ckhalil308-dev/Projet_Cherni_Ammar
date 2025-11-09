@@ -20,10 +20,11 @@ export const routes: Routes = [
             children: [
               { path:'comments', title:'Comments', component:AdminComments},
               { path:'',component: Admindashboard },
-              { path: '**', component: Error }
+              { path:'', redirectTo:'home', pathMatch:'full' },
+              { path: '**', title:'Error', component: Error }
             ]
       },
       { path:'changepassword', title:"Adminchange", component:Changepasswords},
-      { path:'',component: Home },
-      { path: '**', component: Error }
+      { path:'', redirectTo:'home', pathMatch:'full' },
+      { path: '**', title:'Error', component: Error }
 ];

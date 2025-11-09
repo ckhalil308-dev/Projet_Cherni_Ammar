@@ -4,19 +4,14 @@
             placeholder="Search" id="search" />
 
         <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle" style="width:200px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-dark dropdown-toggle" style="width:175px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter </button>
             <ul class="dropdown-menu dropdown-menu-dark">
+                <li class="dropdown-item">Min price: <b>{{minPrice}}</b></li>
                 <li class="d-flex align-items-center gap-2">
-                Min price: <br> 0 
+                0
                 <input type="range" min="0" max="15" value="0" [(ngModel)]="minPrice" name="minPrice" (input)="priceSlider()">
-                 15
-                {{minPrice}}
-                </li>
-                
-                <!-- <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li> --> 
+                15</li>
             </ul>
         </div>
         

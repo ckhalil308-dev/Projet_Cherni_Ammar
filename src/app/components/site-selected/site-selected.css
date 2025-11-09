@@ -1,142 +1,146 @@
-/* Container setup */
+
+/* ---------- GLOBAL STYLES ---------- */
 .container {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
-    width: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    animation: fadeIn 1s ease forwards; /* Page load fade-in */
-}
-.carousel {
-  width: 60%;
-  height: auto; /* ✅ fixed height so images don’t jump */
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  animation: slideIn 1s ease forwards;
-
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
-.carousel-item img {
-  width: 70%;
-  height: 100%; /* ✅ fill the carousel area */
-  object-fit: cover; /* ✅ no stretching, no overflow */
-  transition: transform 0.5s ease;
-}
-
-
-/* Inner container with shadow and hover */
-.container2 {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 15px;
-}
-.container2 .side{
-    font-weight: bolder;
-}
-.container2:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
-
-/* Upper section images */
-.upper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-/* .upper img {
-    width: 350px;
-    height: auto;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
-
-
-
-/* Carousel styling */
-
-/* .carousel:hover {
-    transform: scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-} */
-
-
-
-
-
-
-
-
-
-/* Arrows */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-    color: white;
-    font-weight: bolder;
-      background-color: rgba(223, 222, 222, 0.6);
-      height: auto;
-   
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-    background-color: rgba(223, 222, 222, 0.6);
-    
-}
-
-
-
-/* Text styling */
-h2 {
-    margin: 0;
-    font-size: 2rem;
-    color: #333;
-    animation: fadeUp 1s ease forwards;
+h1, h5 {
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 p {
-    color: #555;
-    font-size: 1rem;
-    animation: fadeUp 1s ease 0.2s forwards;
-    opacity: 0;
+  line-height: 1.6;
+  color: #444;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .container2 {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .upper img {
-        width: 250px;
-    }
-
-    .carousel {
-        width: 90%;
-    }
+/* ---------- TOP SECTION ---------- */
+.container2 {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  width: 90%;
 }
 
-/* Keyframe Animations */
+.container2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.upper img {
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.upper img:hover {
+  transform: scale(1.05);
+}
+
+.upper h5 {
+  margin-top: 15px;
+  color: #1b4b7a;
+  text-align: center;
+}
+
+/* ---------- DESCRIPTION SIDE ---------- */
+.side {
+  background: #f8f9fa;
+  border-left: 3px solid #007bff;
+  border-radius: 12px;
+  padding: 20px;
+  min-height: 200px;
+  font-size: 1.1rem;
+  text-align: justify;
+  animation: slideInRight 1s ease;
+}
+
+/* ---------- SECTION 2 (Gallery + Comments) ---------- */
+.section2 {
+  flex-direction: column;
+  margin-top: 60px;
+  padding: 20px;
+  gap: 40px;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* ---------- CAROUSEL ---------- */
+.carousel-inner img {
+  width: 100%;
+  height: 400px; /* keeps all slides uniform */
+  object-fit: cover; /* crops edges nicely */
+  border-radius: 10px;
+  transition: transform 0.8s ease;
+}
+
+.carousel-inner img:hover {
+  transform: scale(1.03);
+}
+
+.carousel {
+  width: 600px; /* max width for large screens */
+  max-width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.carousel:hover {
+  transform: translateY(-3px);
+}
+
+/* ---------- COMMENTS ---------- */
+.comments {
+  width: 80%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.list-group-item:hover {
+  background: #f2f8ff;
+  transform: translateX(5px);
+}
+
+.list-group-item h5 {
+  color: #0056b3;
+}
+
+.list-group-item small {
+  color: #888;
+  font-style: italic;
+}
+
+/* ---------- ANIMATIONS ---------- */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideIn {
-    0% { transform: translateY(30px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeUp {
-    0% { opacity: 0; transform: translateY(15px); }
-    100% { opacity: 1; transform: translateY(0); }
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
 }

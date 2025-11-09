@@ -1,7 +1,8 @@
 <div class="d-flex justify-content-center m-3">
-<form class="d-flex" style="width: 500px;">
+<form class="d-flex gap-2" style="width: 600px;">
         <input (input)="rechercherSite()"  name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search" placeholder="Search" id="search"/>
         <button (click)="rechercherSite()" class="btn btn-dark" type="button">Search</button>
+        <button class="btn btn-dark" type="button" routerLink="/addsite">Add</button>
 </form>
 </div>
 <div class="d-flex justify-content-center flex-wrap">

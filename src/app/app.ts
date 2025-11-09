@@ -13,7 +13,7 @@ import { Footer } from './components/footer/footer';
 export class App {
     router :Router= inject(Router);
     nav(){
-      return (this.router.url.startsWith('/admindash') || this.router.url.startsWith('/comments'));
+      return (this.router.url.startsWith('/admindash') || this.router.url.startsWith('/comments') || this.router.url.startsWith('/addsite'));
     }
     
 }

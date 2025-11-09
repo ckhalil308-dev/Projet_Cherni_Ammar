@@ -8,6 +8,7 @@ import { SiteList } from './components/site-list/site-list';
 import { Changepasswords } from './components/admin/changepasswords/changepasswords';
 import { SiteSelected } from './components/site-selected/site-selected';
 import { AdminComments } from './components/admin/admin-comments/admin-comments';
+import { AddSite } from './components/admin/add-site/add-site';
       
 
 export const routes: Routes = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
       { path:'siteselected/:idsite', title:"Sites", component:SiteSelected}, 
       { path:'admin', title:"Login", component:AdminLogin},
       { path:'admindash', title:"Dashboard", component:Admindashboard},
+      { path:'addsite', title:"Add site", component:AddSite},
       { path:'comments', title:'Comments', component:AdminComments},
       { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'', redirectTo:'home', pathMatch:'full' },

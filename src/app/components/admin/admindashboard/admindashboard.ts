@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { SitesService } from '../../../services/sites-service';
 import { Sites } from '../../../model/sites';
 import { FormsModule } from "@angular/forms";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-admindashboard',
-  imports: [FormsModule,FormsModule],
+  imports: [FormsModule,FormsModule,RouterLink],
   templateUrl: './admindashboard.html',
   styleUrl: './admindashboard.css',
 })

@@ -16,14 +16,8 @@ export const routes: Routes = [
       { path:'siteList', title:"Sites", component:SiteList},
       { path:'siteselected/:idsite', title:"Sites", component:SiteSelected}, 
       { path:'admin', title:"Login", component:AdminLogin},
-      { path:'admindash', title:"Dashboard", component:Admindashboard,
-            children: [
-              { path:'comments', title:'Comments', component:AdminComments},
-              { path:'',component: Admindashboard },
-              { path:'', redirectTo:'home', pathMatch:'full' },
-              { path: '**', title:'Error', component: Error }
-            ]
-      },
+      { path:'admindash', title:"Dashboard", component:Admindashboard},
+      { path:'comments', title:'Comments', component:AdminComments},
       { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'', redirectTo:'home', pathMatch:'full' },
       { path: '**', title:'Error', component: Error }

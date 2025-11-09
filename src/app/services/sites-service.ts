@@ -29,8 +29,9 @@ export class SitesService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
 
-
-
+  deleteComment(siteId: number, commentId: number): Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/${siteId}/comments/${commentId}`);
+  }
 
 
 

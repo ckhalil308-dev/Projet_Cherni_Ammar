@@ -2,14 +2,17 @@
   @for (site of siteList; track $index) {  
     @for (c of site.comments; track $index){
     <div class="list-group">
-        <div href="#" class="list-group-item d-flex  " aria-current="true">
-            <div class="d-flex w-100 n gap-2">
-            <h5 class="mb-1">{{c.author}}</h5>
-            <small>{{c.date}}</small>
-            </div>
-            <p class="mb-1">{{c.content}}</p>
+        <div href="#" class="list-group-item d-flex justify-content-between align-items-center" aria-current="true">
             <div>
-                <button type="button" class="btn btn-dark">Delete</button>
+                <div class="d-flex w-100 n gap-2">
+                <h5 class="mb-1">{{c.author}}</h5>
+                <small>{{c.date}}</small>
+                <small>{{site.title}}</small>
+                </div>
+                <p class="mb-1">{{c.content}}</p>
+            </div>
+            <div>
+                <button type="button" class="btn btn-dark" (click)="onDeleteComment(site.id, c)">Delete</button>
             </div>
         </div>
     </div>

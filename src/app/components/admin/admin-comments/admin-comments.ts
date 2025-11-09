@@ -18,4 +18,17 @@ export class AdminComments implements OnInit{
         data=>this.siteList=data
       )
   }
+
+  onDeleteComment(siteId: number, comment: Commentaires):void{
+    if (confirm(`Are you sure you want to delete "${comment.content}"?`)) {
+    this.siteservice.deleteComment(siteId, comment.commentId).subscribe(
+      () => {
+        const site = this.siteList.find(s => s.id === siteId);
+        if (site){
+          site.comments=site.comments?.filter(c => c.commentId !== comment.commentId);
+        }
+        }
+    );
+  }
+  }
 }

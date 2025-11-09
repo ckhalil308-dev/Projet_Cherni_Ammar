@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="container2">
-  <div class="upper">
+  <div class="container2 d-flex gap-3">
+  <div class="upper m-4"  >
     <img [src]="site[0].imageUrl" alt="" style="width: 350px;">
     <h5>{{site[0].title}}</h5>
     
     
   </div>
-<p>{{site[0].openingHours}}</p></div>
+  <div class="side d-flex align-items-center justify-content-center " ><p>{{site[0].description}}</p></div></div>
 
 
     <!-- "era": "Romaine",
@@ -19,18 +19,22 @@
     "visitorsPerYear": 130000, -->
   
 
+<div class="section2 d-flex gap-2 justify-content-center align-items-center" >
+<div class="d-flex flex-column align-items-center gap-3">
+<div > <h1>gallery</h1> </div>
 
-
-<div id="carouselExample" class="carousel slide">
+<div id="carouselExample" class="carousel slide ">
+ 
+  
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img [src]="g[0]" class=" d-block  w-100" alt="...">
+      <img [src]="galery[0]" class=" d-block  w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img [src]="g[1]" class=" d-block w-100" alt="...">
+      <img [src]="galery[1]" class=" d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img [src]="g[2]" class=" d-block w-100" alt="...">
+      <img [src]="galery[2]" class=" d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -41,6 +45,27 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+</div>
+<!-- </div> -->
+
+
+ <div class="comments">
+  @for (item of commentes; track $index) {  
+    <div class="list-group">
+  <a href="#" class="list-group-item  " aria-current="true">
+    <div class="d-flex w-100 n gap-2">
+      <h5 class="mb-1">{{item.author}}</h5>
+      <small>{{item.date}}</small>
+    </div>
+    <p class="mb-1">{{item.content}}</p>
+   
+  </a>
+    </div>
+
+     
+  }
+
+ </div>
 </div>
 </div>
 

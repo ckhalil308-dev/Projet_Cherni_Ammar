@@ -14,4 +14,5 @@ export interface Sites {
     visitorsPerYear?: number;
     comments?: Commentaires[];
     gallery?: string[];
+    description:string
 }

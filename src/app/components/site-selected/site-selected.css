@@ -9,21 +9,33 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     animation: fadeIn 1s ease forwards; /* Page load fade-in */
 }
+.carousel {
+  width: 60%;
+  height: auto; /* ✅ fixed height so images don’t jump */
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  animation: slideIn 1s ease forwards;
+
+}
+
+.carousel-item img {
+  width: 70%;
+  height: 100%; /* ✅ fill the carousel area */
+  object-fit: cover; /* ✅ no stretching, no overflow */
+  transition: transform 0.5s ease;
+}
+
 
 /* Inner container with shadow and hover */
 .container2 {
-    width: 90%;
-    display: flex;
-    gap: 50px;
-    align-items: center;
-    flex-wrap: wrap;
-    background: #f8f9fa;
-    padding: 20px 30px;
-    border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
 }
-
+.container2 .side{
+    font-weight: bolder;
+}
 .container2:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
@@ -38,72 +50,49 @@
     align-items: center;
 }
 
-.upper img {
+/* .upper img {
     width: 350px;
     height: auto;
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+} */
 
-.upper img:hover {
-    transform: scale(1.05) rotate(-1deg);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
+
 
 /* Carousel styling */
-.carousel {
-    width: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: slideIn 1s ease forwards; /* Entrance animation */
-}
 
-.carousel:hover {
+/* .carousel:hover {
     transform: scale(1.02);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
+} */
 
-.carousel-inner img {
-    border-radius: 15px;
-    transition: transform 0.5s ease, filter 0.5s ease;
-}
 
-.carousel-inner img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
 
-/* Carousel fade animation (for slide changes) */
-.carousel-fade .carousel-item {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
 
-.carousel-fade .carousel-item.active {
-    opacity: 1;
-}
+
+
+
+
 
 /* Arrows */
 .carousel-control-prev,
 .carousel-control-next {
     width: 5%;
     color: white;
-    border-radius: 50%;
+    font-weight: bolder;
+      background-color: rgba(223, 222, 222, 0.6);
+      height: auto;
+   
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-    background-color: rgba(0,0,0,0.6);
-    transform: scale(1.1);
+    background-color: rgba(223, 222, 222, 0.6);
+    
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    filter: invert(1); /* makes the arrows visible on light backgrounds */
-}
+
 
 /* Text styling */
 h2 {

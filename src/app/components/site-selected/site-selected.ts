@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
 import { Sites } from '../../model/sites';
+import { Commentaires } from '../../model/commentaires';
 
 @Component({
   selector: 'app-site-selected',
@@ -11,7 +12,8 @@ import { Sites } from '../../model/sites';
 })
 export class SiteSelected implements OnInit {
     site: Sites[]=[];
-    g:String[]=[];
+    galery:String[]=[];
+    commentes:Commentaires[]=[]
     idsite:string='';
     s:string='';
     private siteService=inject(SitesService);
@@ -23,7 +25,8 @@ export class SiteSelected implements OnInit {
         next: (data)=>{
           this.site=data.filter(site=>site.id==this.idsite);
           this.s=this.site[0].imageUrl
-          this.g=this.site[0].gallery || [];       
+          this.galery=this.site[0].gallery || [];  
+          this.commentes=this.site[0].comments||[];
 
             
         },

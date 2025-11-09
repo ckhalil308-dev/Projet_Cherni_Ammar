@@ -8,17 +8,17 @@
     @for (site of siteRechercher; track $index) {
  <div class="card site-card " style="width: 18rem;">
   <img [src]="site.imageUrl" class="card-img-top site-img" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{site.title}}</h5>
-    <p class="card-text">nombre visiteures : {{site.visitorsPerYear}}</p>
-    <p class="card-text">rating  {{site.rating}}⭐  </p>
+  <div class="card-body ">
+    <h4 class="card-title">{{site.title}}</h4>
+    <p class="card-text">Era : {{site.era}} <br>
+      Number of visitors : {{site.visitorsPerYear}} <br>
+    Rating : {{site.rating}}⭐  </p>
     <div class="d-flex justify-content-center gap-3">
-    <button class="btn btn-primary btn-sm" (click)="supprimersite(site.id,site)">deleate</button>
-    <button class="btn btn-primary btn-sm">modifier</button>
+    <button class="btn btn-primary btn-sm" (click)="supprimersite(site.id,site)">Delete</button>
+    <button class="btn btn-primary btn-sm">Edit</button>
     </div>
   </div>
 </div>
-
     }
 </div>
 

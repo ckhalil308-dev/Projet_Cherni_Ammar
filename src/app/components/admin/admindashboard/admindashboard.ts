@@ -11,10 +11,10 @@ import { FormsModule } from "@angular/forms";
 })
 export class Admindashboard implements OnInit {
   siteservice:SitesService=inject(SitesService)
-   sites:Sites[]=[]
-    siteRechercher:Sites[]=[]
+  sites:Sites[]=[]
+  siteRechercher:Sites[]=[]
+  site:string="";
 
-   site:string="";
   ngOnInit(): void {
      this.siteservice.getSites().subscribe(
        data=> {this.sites=data
@@ -23,13 +23,11 @@ export class Admindashboard implements OnInit {
    rechercherSite() {
   const exactMatch = this.sites.filter(s => s.title === this.site.trim());
    
-
   if (exactMatch.length > 0) {
     this.siteRechercher = exactMatch;
   } else if (this.site.trim()) {
     this.siteRechercher = this.sites.filter(s => s.title[0].toLowerCase() === this.site[0].toLowerCase());
   } else {
-  
     this.siteRechercher =this.sites;
   }
 

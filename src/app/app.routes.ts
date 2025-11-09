@@ -7,6 +7,7 @@ import { Contact } from './components/contact/contact';
 import { SiteList } from './components/site-list/site-list';
 import { Changepasswords } from './components/admin/changepasswords/changepasswords';
 import { SiteSelected } from './components/site-selected/site-selected';
+import { AdminComments } from './components/admin/admin-comments/admin-comments';
 
 
 export const routes: Routes = [
@@ -14,10 +15,15 @@ export const routes: Routes = [
       { path:'contact', title:"Contact", component:Contact},
       { path:'siteList', title:"Sites", component:SiteList},
       { path:'siteselected/:idsite', title:"Sites", component:SiteSelected}, 
-      { path:'admin', title:"Admin", component:AdminLogin},
-      { path:'admindash', title:"Adminpass", component:Admindashboard},
+      { path:'admin', title:"Login", component:AdminLogin},
+      { path:'admindash', title:"Dashboard", component:Admindashboard,
+            children: [
+              { path:'comments', title:'Comments', component:AdminComments},
+              { path:'',component: Admindashboard },
+              { path: '**', component: Error }
+            ]
+      },
       { path:'changepassword', title:"Adminchange", component:Changepasswords},
       { path:'',component: Home },
-      
       { path: '**', component: Error }
 ];

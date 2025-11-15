@@ -8,7 +8,7 @@
 <div class="d-flex justify-content-center flex-wrap">
     @for (site of siteRechercher; track $index) {
  <div class="card site-card " style="width: 18rem;">
-  <img [src]="site.imageUrl" class="card-img-top site-img" alt="...">
+  <img [src]="site.thumbnail" class="card-img-top site-img" alt="...">
   <div class="card-body ">
     <h4 class="card-title">{{site.title}}</h4>
     <p class="card-text">Era : {{site.era}} <br>

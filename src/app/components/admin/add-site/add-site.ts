@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { Sites } from '../../../model/sites';
 import { SitesService } from '../../../services/sites-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-site',
@@ -15,6 +16,7 @@ export class AddSite implements OnInit{
   readonly formBuilder : FormBuilder = inject(FormBuilder);
   sites:Sites[]=[];
   private sitesService:SitesService=inject(SitesService);
+  readonly http:HttpClient=inject(HttpClient);
 
   ngOnInit(){
     this.sitesService.getSites().subscribe(
@@ -52,4 +54,32 @@ export class AddSite implements OnInit{
     
   }
 
+  onThumbnailSelected(e: any){
+    const file=e.target.files[0];
+    const fd= new FormData();
+    fd.append('image',file);
+    this.http.post<{url: string}>('http://localhost:3000/upload',fd).subscribe(
+      data=>this.siteForm.get('thumbnail')?.setValue(data.url)
+    )
+  }
+
+  onGallerySelected(e: any){
+    const files:File[]=Array.from(e.target.files);
+    const urls:string[]=[];
+
+    files.forEach(
+      f=>{
+        const fd=new FormData();
+        fd.append('image',f);
+        this.http.post<{url:string}>('http://localhost:3000/upload',fd).subscribe(
+          data=>{
+            urls.push(data.url);
+            if(urls.length===files.length){
+              this.siteForm.get('gallery')?.setValue(urls);
+            }
+          }
+        )
+      }
+    )
+  }
 }

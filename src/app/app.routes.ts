@@ -12,7 +12,7 @@ import { AddSite } from './components/admin/add-site/add-site';
 import { guardGuard } from './guard-guard';
 import { NgModule } from '@angular/core';
 
-      
+  
 
 export const routes: Routes = [
       { path:'home', title:"Home", component: Home },

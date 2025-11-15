@@ -4,14 +4,14 @@ export interface Sites {
     id: number;
     title: string;
     era: string;
-    imageUrl: string;
+    thumbnail: string;
     adresse: string;
     price: number;
     open: boolean;
     creation_date: string;
-    rating?: number;
-    openingHours?: string;
-    visitorsPerYear?: number;
+    rating: number;
+    openingHours: string;
+    visitorsPerYear: number;
     comments?: Commentaires[];
     gallery?: string[];
     description:string

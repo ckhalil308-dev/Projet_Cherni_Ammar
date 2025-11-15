@@ -24,7 +24,7 @@ export class SiteSelected implements OnInit {
           this.siteService.getSites().subscribe({
         next: (data)=>{
           this.site=data.filter(site=>site.id==this.idsite);
-          this.s=this.site[0].imageUrl
+          this.s=this.site[0].thumbnail
           this.galery=this.site[0].gallery || [];  
           this.commentes=this.site[0].comments||[];
 

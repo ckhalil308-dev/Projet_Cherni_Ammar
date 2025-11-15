@@ -23,7 +23,7 @@
 
   <div class="mb-3">
     <label for="creation_date" class="form-label">Creation Date</label>
-    <input formControlName="creation_date" type="date" id="creation_date" name="creation_date" class="form-control">
+    <input formControlName="creation_date" type="text" id="creation_date" name="creation_date" class="form-control">
   </div>
 
   <div class="mb-3">
@@ -61,9 +61,10 @@
     <input formControlName="gallery" class="form-control" type="file" id="formFileMultiple" multiple>
   </div>
   
-  <div class="form-check mb-3 ms-2">
-    <input type="checkbox" id="open" name="open" class="form-check-input" style="transform: scale(1.6)">
-    <label formControlName="open" for="open" class="form-check-label">Open</label>
+  <div class=" mb-3">
+    <label for="open" class="form-label">Status</label><br>
+    <input type="checkbox" id="open" name="open" formControlName="open" class="form-check-input m-1" style="transform: scale(1.5)">
+     Open
   </div>
   
 

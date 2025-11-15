@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//allows to handle async data streams from HTTP calls
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SitesService {
   userName:String="admin"
-  password:String="admin@123"
+   password: string = localStorage.getItem("password") || "admin@123";
 
   private apiUrl = 'http://localhost:3000/sites';
 
@@ -39,8 +38,9 @@ export class SitesService {
   checkPassword(password:String){
     return this.password==password
   }
-  setPassword(password:String){
+  setPassword(password:string){
     this.password=password
+    localStorage.setItem("password",password)
   }
 
 

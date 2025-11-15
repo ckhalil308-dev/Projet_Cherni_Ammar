@@ -2,11 +2,11 @@
 .active {
     font-weight: bold;
 }
-* {
+/* * {
     margin: 0;
    
     
-}
+} */
 
 body, html {
   width: 100%;

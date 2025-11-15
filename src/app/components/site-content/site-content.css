@@ -1,78 +1,70 @@
-/* Wrapper: equal height + flex layout */
-.cards-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  align-items: stretch; /* ensures all cards are same height */
-}
-
-/* Card styling */
+/* === Airbnb / Booking style card === */
 .site-card {
-  width: 18rem;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
+  border: none;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background-color: #fff;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 10px;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
 }
 
 .site-card:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 20px 35px rgba(0,0,0,0.25); /* stronger shadow on hover */
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Image: fixed height + cover to prevent stretching */
-.site-card .card-img-top {
-  height: 200px; /* fixed height */
-  object-fit: cover; /* scales and crops nicely */
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+/* === Image style === */
+.site-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-/* Card body: equal height */
-.site-card .card-body {
-  padding: 15px;
-  flex: 1; /* stretch all card-bodies equally */
-  display: flex;
-  flex-direction: column;
+/* === Card content === */
+.card-body {
+  padding: 1rem 1.2rem;
 }
 
-/* Card title */
-.site-card .card-title {
-  font-size: 1.25rem;
+.card-title {
+  font-size: 1.22rem;
   font-weight: 600;
-  margin-bottom: 10px;
-  color: #333;
+  color: #222;
+  margin-bottom: 0.4rem;
 }
 
-/* Card text */
-.site-card .card-text {
-  font-size: 0.9rem;
+.card-text {
   color: #555;
-  margin-bottom: 6px;
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
 }
 
-/* Button: nice styling + hover animation */
-.site-card .btn {
-  margin-top: auto; /* pushes button to bottom */
-  font-size: 0.85rem;
-  padding: 7px 15px;
-  border-radius: 6px;
-   background-color: black;
-  border: none;
-  color: #fff;
+/* === Special text accents === */
+/* .card-text:nth-of-type(3) {
   font-weight: 500;
-  transition: all 0.3s ease;
+  color: #2a6f97;
+} */
+
+/* .card-text:nth-of-type(4) {
+  color: #333;
+} */
+
+/* === Rating style === */
+/* .card-text:last-of-type {
+  font-weight: 600;
+} */
+
+/* === Button === */
+.btn-primary {
+  background-color: #4572ef;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
 }
 
-.site-card .btn:hover {
-  transform: scale(1.02) translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  background-color: rgb(64, 64, 64);
+.btn-primary:hover {
+  background-color: #2d52b8;
 }
-    

@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center m-3">
+<div class="d-flex justify-content-center m-3 m-5">
     <form class="d-flex gap-3" style="width: 600px; ">
         <input (input)="rechercherSite()" name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search"
             placeholder="Search" id="search" />
@@ -7,7 +7,7 @@
             <button class="btn btn-dark dropdown-toggle" style="width:175px" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li class="dropdown-item">Min price: <b>{{minPrice}}</b></li>
+                <li class="dropdown-item">Minimum price: <b>{{minPrice}}</b></li>
                 <li class="d-flex align-items-center gap-2">
                 0
                 <input type="range" min="0" max="15" value="0" [(ngModel)]="minPrice" name="minPrice" (input)="priceSlider()">

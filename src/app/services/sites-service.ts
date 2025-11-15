@@ -7,6 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SitesService {
+  userName:String="admin"
+  password:String="admin@123"
+
   private apiUrl = 'http://localhost:3000/sites';
 
   private http = inject(HttpClient);
@@ -31,6 +34,15 @@ export class SitesService {
 
   deleteComment(siteId: number, commentId: number): Observable<any>{
     return this.http.delete<any>(`${this.apiUrl}/${siteId}/comments/${commentId}`);
+  }
+   login(user: String, pass: String): boolean {
+    return user.trim() === this.userName && pass === this.password;
+  }
+  checkPassword(password:String){
+    return this.password==password
+  }
+  setPassword(password:String){
+    this.password=password
   }
 
 

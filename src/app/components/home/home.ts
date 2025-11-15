@@ -10,6 +10,7 @@ import { Features } from "../../features/features";
 })
 export class Home implements AfterViewInit {
  private el = inject(ElementRef);
+ s:number=0;
 
  
   ngAfterViewInit() {
@@ -20,6 +21,8 @@ export class Home implements AfterViewInit {
     this.el.nativeElement
       .querySelectorAll('.sec2')
       .forEach((sec: Element) => observer.observe(sec));
+      this.s=5;
+      
   }
 }
 // Smooth fade-in when scrolling into view

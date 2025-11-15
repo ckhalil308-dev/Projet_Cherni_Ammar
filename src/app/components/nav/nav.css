@@ -5,6 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 10;
+  height: 5vh;
 }
 
 .custom-nav .nav-link {
@@ -24,12 +25,12 @@
   bottom: 5px;
   width: 0%;
   height: 2px;
-  background: #2b71d2;
+  background: #4572ef;
   transition: width 0.3s ease;
 }
 
 .custom-nav .nav-link:hover {
-  color: #066395;
+  color: #4572ef;
 }
 
 .custom-nav .nav-link:hover::after {

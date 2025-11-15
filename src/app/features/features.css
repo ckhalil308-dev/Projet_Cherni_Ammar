@@ -24,7 +24,7 @@
 }
 
 .features .card-body img {
-  border-radius: 5%;
+ 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }

@@ -8,5 +8,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './admin-nav.css',
 })
 export class AdminNav {
+  logout(){
+    localStorage.removeItem("role")
+  }
 
 }

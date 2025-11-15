@@ -1,0 +1,107 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+  .sec h2 {
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  top: 80%;
+  color: white;
+  right: 50%;
+  margin-left: 5%;
+   text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+   font-weight: 500;
+}
+
+body {
+  background: #f5f6fa;
+  font-family: "Poppins", sans-serif;
+}
+
+
+.container-fluid {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.conrainer {
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  gap: 3rem;
+}
+
+/* -----------------------------
+   LEFT SIDE - FORM CARD
+--------------------------------*/
+.cont {
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  animation: fadeUp 0.8s ease forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* Title styling */
+.cont h2 {
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2d2e32;
+}
+
+/* Form fields */
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  transition: 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+/* Button */
+button {
+  border-radius: 10px !important;
+  font-weight: 500;
+  transition: 0.3s ease;
+  background-color:black;
+  color: white;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3);
+}
+
+
+.sec {
+  animation: fadeUp 1s ease forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.img {
+  width: 100%;
+  border-radius: 8%;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: 0.4s ease;
+  object-fit: cover;
+  height: 75vh;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

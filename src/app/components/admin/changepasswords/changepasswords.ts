@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Route, Router } from '@angular/router';
+import { SitesService } from '../../../services/sites-service';
 
 @Component({
   selector: 'app-changepasswords',
@@ -10,33 +11,50 @@ import { Route, Router } from '@angular/router';
   styleUrl: './changepasswords.css',
 })
 export class Changepasswords {
-  currentPassword: string = '';
-  newPassword: string = ''
-  d:string = '';
+  currentPassword:String=''
+  newPassword: String = ''
+  confirmPassword:String=''
+
   router:Router = inject(Router);
-   password:string = 'admin123';
     private snackBar: MatSnackBar = inject(MatSnackBar);
-  adminPassword(){
-    if(this.currentPassword === this.password && this.newPassword.length >=6){
-      this.router.navigate(['/admin']); 
-         this.snackBar.open('Login Failed! Incorrect Username or Password', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'left',
-      });
-     }
-     else{
-          this.snackBar.open('Password Change Failed! Incorrect Current Password or New Password too short', 'Close', {
-        duration: 3000,
-        verticalPosition: 'top',
-        horizontalPosition: 'left',
-      });
-     }
+    private  siteservice:SitesService=inject(SitesService)
+adminPassword() {
+  if (!this.siteservice.checkPassword(this.currentPassword)) {
+    this.snackBar.open("Old password is incorrect!", 'Close', {
+      duration: 1500,
+      verticalPosition: 'top',
+      horizontalPosition: 'left',
+    });
 
-
+  }
+   if (this.newPassword.length <= 6) {
+    this.snackBar.open("New password must be longer than 6 characters!", 'Close', {
+      duration: 1500,
+      verticalPosition: 'top',
+      horizontalPosition: 'left',
+    });
+  if (this.newPassword !== this.confirmPassword ) {
+    this.snackBar.open("New passwords do not match!", 'Close', {
+      duration: 1500,
+      verticalPosition: 'top',
+      horizontalPosition: 'left',
+    });
+    
+  }
+   
+  this.siteservice.setPassword(this.newPassword);
+  this.snackBar.open("Password changed successfully!", 'Close', {
+    duration: 1500,
+    verticalPosition: 'top',
+    horizontalPosition: 'left',
+  });
+  this.currentPassword = '';
+  this.newPassword = '';
+  this.confirmPassword = '';
 }
+}}
 
 
 
 
-}
+

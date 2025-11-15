@@ -6,12 +6,11 @@
   border-radius: 12px;
   border: 1px solid #ddd;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 .dropdown .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transform: translateY(-0.5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 /* ---------- DROPDOWN MENU ---------- */
@@ -19,7 +18,6 @@
   background: rgba(255, 255, 255, 0.97);
   border-radius: 12px;
   padding: 15px;
-  min-width: 220px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
   filter: opacity(90%);
   animation:  fadeIn  0.3s linear;
@@ -27,13 +25,13 @@
 
 .dropdown-menu li {
   font-size: 0.95rem;
-  padding: 8px 10px;
+  padding: 7px 9px;
   cursor: default;
   color: #333;
 }
 
 .dropdown-menu li:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(248, 248, 248, 0.9);
   border-radius: 8px;
 }
 

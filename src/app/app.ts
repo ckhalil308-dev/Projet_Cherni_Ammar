@@ -15,5 +15,11 @@ export class App {
     nav(){
       return (this.router.url.startsWith('/admindash') || this.router.url.startsWith('/comments') || this.router.url.startsWith('/addsite'));
     }
-    
+     constructor() {
+ 
+    window.addEventListener('popstate', () => {
+      localStorage.removeItem('role');
+      this.router.navigate(['/home']);
+    });
+  }
 }

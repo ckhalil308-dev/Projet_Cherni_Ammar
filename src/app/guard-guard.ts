@@ -16,8 +16,8 @@ export const guardGuard: CanActivateFn = (route, state) => {
     duration: 3000,
     verticalPosition: 'top',
     horizontalPosition: 'left',
-  });
+  }); 
 
-  router.navigate(['/home']);
+  router.navigate(['/admin']);
   return false; 
 };

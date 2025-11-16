@@ -3,6 +3,7 @@ import { SitesService } from '../../../services/sites-service';
 import { Sites } from '../../../model/sites';
 import { FormsModule } from "@angular/forms";
 import { RouterLink } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admindashboard',
@@ -11,6 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './admindashboard.css',
 })
 export class Admindashboard implements OnInit {
+  private snackbar:MatSnackBar=inject(MatSnackBar)
   siteservice:SitesService=inject(SitesService)
   sites:Sites[]=[]
   siteRechercher:Sites[]=[]
@@ -37,19 +39,13 @@ export class Admindashboard implements OnInit {
   if (confirm(`Are you sure you want to delete "${site.title}"?`)) {
     this.siteservice.deleteSite(id).subscribe(
       data => {
-        const index = this.sites.findIndex(s => s.id === site.id); // safer than indexOf
+        const index = this.sites.findIndex(s => s.id === site.id); 
         if (index > -1) this.sites.splice(index, 1);
+        
+
       }
     );
   }
-}
-ajoutersites(s:Sites){
-  this.siteservice.addSite(s).subscribe(
-    
-
-  )
-
-
 }
 
 

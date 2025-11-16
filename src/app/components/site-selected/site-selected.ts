@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
 import { Sites } from '../../model/sites';
 import { Commentaires } from '../../model/commentaires';
-
+  
 @Component({
   selector: 'app-site-selected',
   imports: [],
@@ -14,19 +14,22 @@ export class SiteSelected implements OnInit {
     site: Sites[]=[];
     galery:String[]=[];
     commentes:Commentaires[]=[]
-    idsite:string='';
-    s:string='';
+    idSite:String='';
+    sitePhoto:String='';
+    siteName:string=''
+  
     private siteService=inject(SitesService);
   router:Router=inject(Router);
   activatedRoute:ActivatedRoute=inject(ActivatedRoute)
    ngOnInit(): void {
-     this.idsite=this.activatedRoute.snapshot.params['idsite'];
-          this.siteService.getSites().subscribe({
+     this.idSite=this.activatedRoute.snapshot.params['idsite'];
+        this.siteService.getSites().subscribe({
         next: (data)=>{
-          this.site=data.filter(site=>site.id==this.idsite);
-          this.s=this.site[0].thumbnail
+          this.site=data.filter(site=>site.id==this.idSite);
+          this.sitePhoto=this.site[0].thumbnail
           this.galery=this.site[0].gallery || [];  
           this.commentes=this.site[0].comments||[];
+          this.siteName=this.site[0].title
 
             
         },
@@ -35,6 +38,9 @@ export class SiteSelected implements OnInit {
         },
       });
    }
+
+   
+   
  
    
 

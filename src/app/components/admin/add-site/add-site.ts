@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Sites } from '../../../model/sites';
 import { SitesService } from '../../../services/sites-service';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar, matSnackBarAnimations } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-site',
@@ -12,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './add-site.css',
 })
 export class AddSite implements OnInit{
+  router:Router=inject(Router)
+  private snackbar:MatSnackBar=inject(MatSnackBar)
   siteForm!: FormGroup;
   readonly formBuilder : FormBuilder = inject(FormBuilder);
   sites:Sites[]=[];
@@ -35,7 +38,7 @@ export class AddSite implements OnInit{
       openingHours : ["08:00 - 17:00",[Validators.required]],
       visitorsPerYear : [200000,[Validators.required]],
       description : ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.",[Validators.required]],
-      thumbnail : [""],
+      thumbnail : ["",Validators.required],
       gallery : [[]],
       open : [false]
     })
@@ -49,9 +52,17 @@ export class AddSite implements OnInit{
       data=>{
         console.log(data);
         this.sites.push(s);
+        this.snackbar.open("site added successfully !" ,"close" ,{
+          duration:3000,
+           verticalPosition: "top",
+           horizontalPosition: "left",
+
+
+        })
+
       }
-    )
-    
+    ) 
+    this.router.navigate(["/admindash"])
   }
 
   onThumbnailSelected(e: any){

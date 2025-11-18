@@ -27,7 +27,14 @@
 </div>
   <div class="d-flex flex-column  justify-content-center  col-md-6 " >
     <p>Description: <br>{{site[0].description}}</p>
-    <p> CreatioN date :  {{site[0].creation_date |bCAC}} </p>
+     @if (site[0].isBC) {
+       <p> CreatioN date :   {{  site[0].creation_date| bCAC }} B.C  </p>
+     }
+     @else {
+       <p> CreatioN date :  {{  site[0].creation_date|bCAC }} A.C  </p>
+     }
+     
+   
     <p>  era  : {{site[0].era}}</p>
    <p [class]="{
       'text-success': site[0].visitorsPerYear > 1000000,

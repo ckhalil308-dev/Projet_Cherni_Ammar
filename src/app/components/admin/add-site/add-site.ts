@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Sites } from '../../../model/sites';
 import { SitesService } from '../../../services/sites-service';
@@ -16,30 +16,31 @@ export class AddSite implements OnInit{
   router:Router=inject(Router)
   private snackbar:MatSnackBar=inject(MatSnackBar)
   siteForm!: FormGroup;
-  readonly formBuilder : FormBuilder = inject(FormBuilder);
+  readonly fb : FormBuilder = inject(FormBuilder);
   sites:Sites[]=[];
   private sitesService:SitesService=inject(SitesService);
   readonly http:HttpClient=inject(HttpClient);
-
   ngOnInit(){
     this.sitesService.getSites().subscribe(
       data=>{
         this.sites=data;
       }
     )
-    this.siteForm = this.formBuilder.nonNullable.group({
+    
+    this.siteForm = this.fb.nonNullable.group({
       id :[],
       title : ["Kerkouane",[Validators.required]],
       era : ["Punic",[Validators.required]],
       address : ["Kerkouane, Nabeul Governorate, Tunisia",[Validators.required]],
       price : [10,[Validators.required]],
-      creation_date : ["-00500-01-01",[Validators.required]],
+      creation_date : ["00500-01-01",[Validators.required]],
+      isBC : [false],
       rating : [4.4,[Validators.required]],
       openingHours : ["08:00 - 17:00",[Validators.required]],
       visitorsPerYear : [200000,[Validators.required]],
       description : ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.",[Validators.required]],
       thumbnail : ["",Validators.required],
-      gallery : [[]],
+      gallery :FormArray,
       open : [false]
     })
     

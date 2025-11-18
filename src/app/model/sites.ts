@@ -8,11 +8,12 @@ export interface Sites {
     address: string;
     price: number;
     open: boolean;
-    creation_date: string;
+    creation_date: Date;
     rating: number;
     openingHours: string;
     visitorsPerYear: number;
     comments?: Commentaires[];
     gallery?: string[];
+    isBC:boolean,
     description:string
 }

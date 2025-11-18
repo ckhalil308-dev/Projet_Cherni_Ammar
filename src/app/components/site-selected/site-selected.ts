@@ -8,7 +8,7 @@ import { BCACPipe } from '../../pipe/bc-ac-pipe';
   
 @Component({
   selector: 'app-site-selected',
-  imports: [BCACPipe],
+  imports: [DatePipe,BCACPipe],
   templateUrl: './site-selected.html',
   styleUrl: './site-selected.css',
 })

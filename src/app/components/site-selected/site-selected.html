@@ -1,29 +1,8 @@
-<div class="container">
-  <div class="container2 d-flex gap-3">
-  <div class="upper m-4"  >
-    <img [src]="site[0].thumbnail" alt="" style="width: 350px;">
-    <h5>{{site[0].title}}</h5>
-    
-    
+  <div>
+     <button (click)="returnToSites()" >back</button>
   </div>
-  <div class="side d-flex align-items-center justify-content-center " ><p>{{site[0].description}}</p></div></div>
-
-
-    <!-- "era": "Romaine",
-    "adresse": "Sbeitla, Gouvernorat de Kasserine, Tunisie",
-    "price": 10,
-    "open": true,
-    "creation_date": "100-01-01",
-    "rating": 4.7,
-    "openingHours": "08:00 - 18:00",
-    "visitorsPerYear": 130000, -->
-  
-
-<div class="section2 d-flex gap-2 justify-content-center align-items-center" >
-<div class="d-flex flex-column align-items-center gap-3">
-<div > <h1>gallery</h1> </div>
-
-<div id="carouselExample" class="carousel slide ">
+  <div class="d-flex mt-5 gap-5">
+  <div id="carouselExample" class=" ml-1 col-md-5  carousel slide  ">
  
   
   <div class="carousel-inner">
@@ -46,7 +25,33 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<!-- </div> -->
+  <div class="d-flex flex-column  justify-content-center  col-md-6 " >
+    <p>Description: <br>{{site[0].description}}</p>
+    <p> CreatioN date :  {{site[0].creation_date |bCAC}} </p>
+    <p>  era  : {{site[0].era}}</p>
+   <p [class]="{
+      'text-success': site[0].visitorsPerYear > 1000000,
+      'text-warning': site[0].visitorsPerYear > 500000 && site[0].visitorsPerYear <= 1000000,
+      'text-danger': site[0].visitorsPerYear <= 500000
+    }">
+  Visitors Per Year: {{site[0].visitorsPerYear}}
+    <p>  Adresse: {{site[0].address}}</p>
+    
+    
+
+  </div>
+</div>
+
+
+  
+  
+
+<div class="section2 d-flex gap-2 justify-content-center align-items-center" >
+<div class="d-flex flex-column align-items-center gap-3">
+<h3>comments</h3>
+
+
+
 
 
  <div class="comments">

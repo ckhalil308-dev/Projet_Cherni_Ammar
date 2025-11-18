@@ -8,6 +8,7 @@
   font-family: "Poppins", sans-serif;
   color: #222;
   animation: fadeIn 0.8s ease-in-out;
+  width: 100%;
 }
 
 h1, h5 {
@@ -22,13 +23,12 @@ p {
 
 /* ---------- TOP SECTION ---------- */
 .container2 {
-  background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 20px;
-  width: 90%;
+  width: 100%;
 }
 
 .container2:hover {
@@ -86,7 +86,7 @@ p {
 }
 
 .carousel {
-  width: 800px; /* max width for large screens */
+  margin-left: 5%;
   max-width: 100%;
   border-radius: 10px;
   overflow: hidden;

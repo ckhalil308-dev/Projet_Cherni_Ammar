@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
 import { Sites } from '../../model/sites';
 import { Commentaires } from '../../model/commentaires';
+import { DatePipe } from '@angular/common';
+import { BCACPipe } from '../../pipe/bc-ac-pipe';
   
 @Component({
   selector: 'app-site-selected',
-  imports: [],
+  imports: [BCACPipe],
   templateUrl: './site-selected.html',
   styleUrl: './site-selected.css',
 })
@@ -38,7 +40,10 @@ export class SiteSelected implements OnInit {
         },
       });
    }
-
+    returnToSites(){
+      this.router.navigate(['/siteList'])
+      
+    }
    
    
  

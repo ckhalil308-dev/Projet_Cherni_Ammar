@@ -5,7 +5,7 @@ export interface Sites {
     title: string;
     era: string;
     thumbnail: string;
-    adresse: string;
+    address: string;
     price: number;
     open: boolean;
     creation_date: string;

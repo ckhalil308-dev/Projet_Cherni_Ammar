@@ -16,7 +16,7 @@
     Rating : {{site.rating}}⭐  </p>
     <div class="d-flex justify-content-center gap-3">
     <button class="btn btn-primary btn-sm" (click)="supprimersite(site.id,site)">Delete</button>
-    <button class="btn btn-primary btn-sm">Edit</button>
+    <button class="btn btn-primary btn-sm" [routerLink]="['/editsite', site.id]">Edit</button>
     </div>
   </div>
 </div>

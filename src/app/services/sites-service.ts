@@ -17,6 +17,10 @@ export class SitesService {
    return this.http.get<any[]>(this.apiUrl);
   }
 
+  getSiteById(id: number): Observable<any>{
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
   addSite(site: any): Observable<any> {
    return this.http.post<any>(this.apiUrl, site);
   }

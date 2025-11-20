@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditSite implements OnInit {
   router: Router = inject(Router)
-  private snackbar: MatSnackBar = inject(MatSnackBar)
+  private snackbar: MatSnackBar = inject(MatSnackBar);
   siteForm!: FormGroup;
   readonly formBuilder: FormBuilder = inject(FormBuilder);
   sites: Sites[] = [];
@@ -52,11 +52,9 @@ export class EditSite implements OnInit {
       this.sitesService.getSites().subscribe({
         next: (data)=>{
           console.log(data);
-          this.sites=data.filter(site=>site.id==this.idSite);
-          this.siteForm?.setValue(this.sites[0]);
-          // this.sitesService.updateSite(idSite,data).subscribe({
-    
-          // })
+          this.sites=data.filter(site=>site.id==idSite);
+          console.log(this.sites);
+          this.siteForm?.patchValue(this.sites[0]);
         },
         error: (err)=>{
           console.error('Error fetching sites:', err);
@@ -66,23 +64,19 @@ export class EditSite implements OnInit {
   }
 
   onSubmit() {
-    this.siteForm.get('id')?.setValue(this.sites.length + 1);
-    let s: Sites = this.siteForm.value;
-    this.sitesService.addSite(s).subscribe(
-      data => {
-        console.log(data);
-        this.sites.push(s);
-        this.snackbar.open("site added successfully !", "close", {
-          duration: 3000,
-          verticalPosition: "top",
-          horizontalPosition: "left",
-
-
+    const idSite = this.activatedRoute.snapshot.params['idsite'];
+    const site: Sites = this.siteForm.value;
+    this.sitesService.updateSite(Number(idSite),site).subscribe(
+      data=>{
+        this.snackbar.open("site edited successfully !" ,"close" ,{
+          duration:3000,
+           verticalPosition: "top",
+           horizontalPosition: "left",
         })
-
       }
+
     )
-    this.router.navigate(["/admindash"])
+    this.router.navigate(["/admindash"]);
   }
 
   onThumbnailSelected(e: any) {

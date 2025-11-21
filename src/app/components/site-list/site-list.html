@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center m-3 m-5">
     <form class="d-flex gap-3" style="width: 600px; ">
-        <input (input)="rechercherSite()" name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search"
+        <input (input)="researchSites()" name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search"
             placeholder="Search" id="search" />
 
         <div class="dropdown">
@@ -15,14 +15,14 @@
             </ul>
         </div>
         
-        <button (click)="rechercherSite()" class="btn btn-dark" type="button">Search</button>
+        <button (click)="researchSites()" class="btn btn-dark" type="button">Search</button>
     </form> 
 </div>
 
 
 <div class="container2 mt-5">
     <div class=" container">
-        @for(site of siteFiltered; track $index){
+        @for(site of sitesFiltered; track $index){
         <app-site-content [site]="site"></app-site-content>
         }
     </div>

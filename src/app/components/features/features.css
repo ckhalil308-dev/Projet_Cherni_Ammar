@@ -1,7 +1,6 @@
-/* FEATURES SECTION */
 .features {
   background-color: #f8f9fa;
-  font-family: 'Poppins', sans-serif; /* modern font */
+  font-family: 'Poppins', sans-serif;
 }
 
 .features .card {
@@ -24,7 +23,6 @@
 }
 
 .features .card-body img {
- 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
@@ -46,7 +44,6 @@
   line-height: 1.6;
 }
 
-/* Fade-in animation */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -57,6 +54,7 @@
   opacity: 1;
   transform: translateY(0);
 }
+
 h2{
     font-family: 'Poppins', sans-serif;
     font-weight: bold;

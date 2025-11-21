@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { Sites } from '../../../model/sites';
+import { Site } from '../../../model/site';
 import { SitesService } from '../../../services/sites-service';
 import { HttpClient } from '@angular/common/http';
-import { MatSnackBar, matSnackBarAnimations } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-site',
@@ -13,13 +13,14 @@ import { MatSnackBar, matSnackBarAnimations } from '@angular/material/snack-bar'
   styleUrl: './add-site.css',
 })
 export class AddSite implements OnInit{
-  router:Router=inject(Router)
-  private snackbar:MatSnackBar=inject(MatSnackBar)
+  private readonly router:Router=inject(Router)
+  private readonly snackbar:MatSnackBar=inject(MatSnackBar)
+  private readonly fb : FormBuilder = inject(FormBuilder);
+  private readonly sitesService:SitesService=inject(SitesService);
+  private readonly http:HttpClient=inject(HttpClient);
+  sites:Site[]=[];
   siteForm!: FormGroup;
-  readonly fb : FormBuilder = inject(FormBuilder);
-  sites:Sites[]=[];
-  private sitesService:SitesService=inject(SitesService);
-  readonly http:HttpClient=inject(HttpClient);
+  
   ngOnInit(){
     this.sitesService.getSites().subscribe(
       data=>{
@@ -48,19 +49,16 @@ export class AddSite implements OnInit{
 
   onSubmit() {
     this.siteForm.get('id')?.setValue(this.sites.length+1);
-    let s:Sites=this.siteForm.value;
+    let s:Site=this.siteForm.value;
     this.sitesService.addSite(s).subscribe(
       data=>{
         console.log(data);
         this.sites.push(s);
         this.snackbar.open("site added successfully !" ,"close" ,{
           duration:3000,
-           verticalPosition: "top",
-           horizontalPosition: "left",
-
-
+          verticalPosition: "top",
+          horizontalPosition: "left"
         })
-
       }
     ) 
     this.router.navigate(["/admindash"])

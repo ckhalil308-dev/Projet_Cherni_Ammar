@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Sites } from '../../model/sites';
 import { RouterLink } from "@angular/router";
 import { CurrencyPipe } from '@angular/common';
+import { Site } from '../../model/site';
 
 @Component({
   selector: 'app-site-content',
@@ -10,6 +10,6 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './site-content.css',
 })
 export class SiteContent {
-  @Input() site!:Sites;
+  @Input() site!:Site;
 
 }

@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Sites } from '../../../model/sites';
 import { SitesService } from '../../../services/sites-service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Site } from '../../../model/site';
 
 @Component({
   selector: 'app-edit-site',
@@ -13,18 +13,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './edit-site.css',
 })
 export class EditSite implements OnInit {
-  router: Router = inject(Router)
-  private snackbar: MatSnackBar = inject(MatSnackBar);
-  siteForm!: FormGroup;
-  readonly formBuilder: FormBuilder = inject(FormBuilder);
-  sites: Sites[] = [];
+  private readonly router: Router = inject(Router);
+  private readonly snackbar: MatSnackBar = inject(MatSnackBar);
+  private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly sitesService: SitesService = inject(SitesService);
+  private readonly http: HttpClient = inject(HttpClient);
+  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  sites: Site[] = [];
   idSite:String='';
-  private sitesService: SitesService = inject(SitesService);
-  readonly http: HttpClient = inject(HttpClient);
-
-  private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  siteForm!: FormGroup;
   
-
   ngOnInit() {
     this.sitesService.getSites().subscribe(
       data => {
@@ -65,9 +63,9 @@ export class EditSite implements OnInit {
 
   onSubmit() {
     const idSite = this.activatedRoute.snapshot.params['idsite'];
-    const site: Sites = this.siteForm.value;
-    this.sitesService.updateSite(Number(idSite),site).subscribe(
-      data=>{
+    const site: Site = this.siteForm.value;
+    this.sitesService.updateSite(idSite,site).subscribe(
+      ()=>{
         this.snackbar.open("site edited successfully !" ,"close" ,{
           duration:3000,
            verticalPosition: "top",
@@ -93,9 +91,9 @@ export class EditSite implements OnInit {
     const urls: string[] = [];
 
     files.forEach(
-      f => {
+      file => {
         const fd = new FormData();
-        fd.append('image', f);
+        fd.append('image', file);
         this.http.post<{ url: string }>('http://localhost:3000/upload', fd).subscribe(
           data => {
             urls.push(data.url);

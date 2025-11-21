@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SitesService } from '../../../services/sites-service';
-import { Commentaires } from '../../../model/commentaires';
-import { Sites } from '../../../model/sites';
+import { Site } from '../../../model/site';
+import { Comment } from '../../../model/comment';
 
 @Component({
   selector: 'app-admin-comments',
@@ -10,8 +10,8 @@ import { Sites } from '../../../model/sites';
   styleUrl: './admin-comments.css',
 })
 export class AdminComments implements OnInit{
-  siteservice:SitesService=inject(SitesService);
-  siteList:Sites[]=[];
+  private readonly siteservice:SitesService=inject(SitesService);
+  siteList:Site[]=[];
 
   ngOnInit(): void {
       this.siteservice.getSites().subscribe(
@@ -19,7 +19,7 @@ export class AdminComments implements OnInit{
       )
   }
 
-  onDeleteComment(siteId: number, comment: Commentaires):void{
+  onDeleteComment(siteId: string, comment: Comment):void{
     if (confirm(`Are you sure you want to delete "${comment.content}"?`)) {
     this.siteservice.deleteComment(siteId, comment.commentId).subscribe(
       () => {

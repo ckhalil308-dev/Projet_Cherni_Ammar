@@ -1,7 +1,7 @@
 import { Component, Inject, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { SitesService } from '../../../services/sites-service';
 
 @Component({
@@ -11,15 +11,16 @@ import { SitesService } from '../../../services/sites-service';
   styleUrl: './changepasswords.css',
 })
 export class Changepasswords {
-  currentPassword:String=''
-  newPassword: string = ''
-  confirmPassword:String=''
+  private readonly router:Router = inject(Router);
+  private readonly snackBar: MatSnackBar = inject(MatSnackBar);
+  private readonly siteService:SitesService=inject(SitesService)
 
-  router:Router = inject(Router);
-    private snackBar: MatSnackBar = inject(MatSnackBar);
-    private  siteservice:SitesService=inject(SitesService)
+  currentPassword:string=''
+  newPassword: string = ''
+  confirmPassword:string=''
+
 adminPassword() {
-  if (!this.siteservice.checkPassword(this.currentPassword)) {
+  if (!this.siteService.checkPassword(this.currentPassword)) {
     this.snackBar.open("Old password is incorrect!", "Close", {
       duration: 1500,
       verticalPosition: "top",
@@ -41,7 +42,7 @@ adminPassword() {
     });
   }
   else {
-    this.siteservice.setPassword(this.newPassword);
+    this.siteService.setPassword(this.newPassword);
     this.snackBar.open("Password changed successfully!", "Close", {
       duration: 1500,
       verticalPosition: "top",

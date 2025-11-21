@@ -1,84 +1,81 @@
-  <div>
-     <button (click)="returnToSites()" >back</button>
-  </div>
-  <div class="d-flex mt-5 gap-5">
+<div>
+  <button (click)="returnToSites()">back</button>
+</div>
+<div class="d-flex mt-5 gap-5">
   <div id="carouselExample" class=" ml-1 col-md-5  carousel slide  ">
- 
-  
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img [src]="galery[0]" class=" d-block  w-100" alt="...">
+
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img [src]="galery[0]" class=" d-block  w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img [src]="galery[1]" class=" d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img [src]="galery[2]" class=" d-block w-100" alt="...">
+      </div>
     </div>
-    <div class="carousel-item">
-      <img [src]="galery[1]" class=" d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img [src]="galery[2]" class=" d-block w-100" alt="...">
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-  <div class="d-flex flex-column  justify-content-center  col-md-6 " >
-    <p>Description: <br>{{site[0].description}}</p>
-     @if (site[0].isBC) {
-       <p> CreatioN date :   {{  site[0].creation_date| bCAC }} B.C  </p>
-     }
-     @else {
-       <p> CreatioN date :  {{  site[0].creation_date|bCAC }} A.C  </p>
-     }
-     
-   
-    <p>  era  : {{site[0].era}}</p>
-   <p [class]="{
-      'text-success': site[0].visitorsPerYear > 1000000,
-      'text-warning': site[0].visitorsPerYear > 500000 && site[0].visitorsPerYear <= 1000000,
-      'text-danger': site[0].visitorsPerYear <= 500000
+  <div class="d-flex flex-column  justify-content-center  col-md-6 ">
+    <p>Description: <br>{{sites[0].description}}</p>
+    @if (sites[0].isBC) {
+    <p> Creation date : {{ sites[0].creation_date | bCAC }} B.C </p>
+    }
+    @else {
+    <p> Creation date : {{ sites[0].creation_date | bCAC }} A.C </p>
+    }
+
+
+    <p> Era : {{sites[0].era}}</p>
+    <p [class]="{
+      'text-success': sites[0].visitorsPerYear > 1000000,
+      'text-warning': sites[0].visitorsPerYear > 500000 && sites[0].visitorsPerYear <= 1000000,
+      'text-danger': sites[0].visitorsPerYear <= 500000
     }">
-  Visitors Per Year: {{site[0].visitorsPerYear}}
-    <p>  Adresse: {{site[0].address}}</p>
-    
-    
+      Visitors Per Year: {{sites[0].visitorsPerYear}}
+    <p> Adresse: {{sites[0].address}}</p>
+
 
   </div>
 </div>
 
 
-  
-  
-
-<div class="section2 d-flex gap-2 justify-content-center align-items-center" >
-<div class="d-flex flex-column align-items-center gap-3">
-<h3>comments</h3>
 
 
 
+<div class="section2 d-flex gap-2 justify-content-center align-items-center">
+  <div class="d-flex flex-column align-items-center gap-3">
+    <h3>comments</h3>
 
 
- <div class="comments">
-  @for (item of commentes; track $index) {  
-    <div class="list-group">
-  <a href="#" class="list-group-item  " aria-current="true">
-    <div class="d-flex w-100 n gap-2">
-      <h5 class="mb-1">{{item.author}}</h5>
-      <small>{{item.date}}</small>
+
+
+
+    <div class="comments">
+      @for (item of commentes; track $index) {
+      <div class="list-group">
+        <a href="#" class="list-group-item  " aria-current="true">
+          <div class="d-flex w-100 n gap-2">
+            <h5 class="mb-1">{{item.author}}</h5>
+            <small>{{item.date}}</small>
+          </div>
+          <p class="mb-1">{{item.content}}</p>
+
+        </a>
+      </div>
+
+
+      }
+
     </div>
-    <p class="mb-1">{{item.content}}</p>
-   
-  </a>
-    </div>
-
-     
-  }
-
- </div>
+  </div>
 </div>
-</div>
-
- 

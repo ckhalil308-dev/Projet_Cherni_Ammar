@@ -11,14 +11,15 @@ import { SitesService } from '../../../services/sites-service';
   styleUrl: './admin-login.css',
 })
 export class AdminLogin {
-  siteservice:SitesService=inject(SitesService)
+  private readonly siteservice:SitesService=inject(SitesService)
+  private snackBar: MatSnackBar = inject(MatSnackBar);
+  private readonly router:Router=inject(Router);
+  d:string='';
   username:String='';
   password:String=''; 
-  router:Router=inject(Router);
   // userName:string='admin';
   // Password:string='admin@123';
-  d:string='';
-    private snackBar: MatSnackBar = inject(MatSnackBar);
+
 login(){
   if(this.siteservice.login(this.username,this.password)){
     localStorage.setItem('role', 'admin');

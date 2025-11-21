@@ -1,7 +1,7 @@
-import { Commentaires } from "./commentaires";
+import { Comment } from "./comment";
 
-export interface Sites {
-    id: number;
+export interface Site {
+    id: string;
     title: string;
     era: string;
     thumbnail: string;
@@ -12,7 +12,7 @@ export interface Sites {
     rating: number;
     openingHours: string;
     visitorsPerYear: number;
-    comments?: Commentaires[];
+    comments?: Comment[];
     gallery?: string[];
     isBC:boolean,
     description:string

@@ -1,12 +1,12 @@
 <div class="d-flex justify-content-center m-3">
 <form class="d-flex gap-2" style="width: 600px;">
-        <input (input)="rechercherSite()"  name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search" placeholder="Search" id="search"/>
-        <button (click)="rechercherSite()" class="btn btn-dark" type="button">Search</button>
+        <input (input)="researchSite()"  name="searchInput" [(ngModel)]="site" class="form-control me-2" type="search" placeholder="Search" id="search"/>
+        <button (click)="researchSite()" class="btn btn-dark" type="button">Search</button>
         <button class="btn btn-dark" type="button" routerLink="/addsite">Add</button>
 </form>
 </div>
 <div class="d-flex justify-content-center flex-wrap">
-    @for (site of siteRechercher; track $index) {
+    @for (site of sitesResearched; track $index) {
  <div class="card site-card " style="width: 18rem;">
   <img [src]="site.thumbnail" class="card-img-top site-img" alt="...">
   <div class="card-body ">
@@ -15,7 +15,7 @@
       Number of visitors : {{site.visitorsPerYear}} <br>
     Rating : {{site.rating}}⭐  </p>
     <div class="d-flex justify-content-center gap-3">
-    <button class="btn btn-primary btn-sm" (click)="supprimersite(site.id,site)">Delete</button>
+    <button class="btn btn-primary btn-sm" (click)="deleteSite(site.id,site)">Delete</button>
     <button class="btn btn-primary btn-sm" [routerLink]="['/editsite', site.id]">Edit</button>
     </div>
   </div>

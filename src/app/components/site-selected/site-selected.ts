@@ -1,53 +1,47 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
-import { Sites } from '../../model/sites';
-import { Commentaires } from '../../model/commentaires';
 import { DatePipe } from '@angular/common';
 import { BCACPipe } from '../../pipe/bc-ac-pipe';
-  
+import { Site } from '../../model/site';
+import { Comment } from '../../model/comment';
+
 @Component({
   selector: 'app-site-selected',
-  imports: [DatePipe,BCACPipe],
+  imports: [DatePipe, BCACPipe],
   templateUrl: './site-selected.html',
   styleUrl: './site-selected.css',
 })
 export class SiteSelected implements OnInit {
-    site: Sites[]=[];
-    galery:String[]=[];
-    commentes:Commentaires[]=[]
-    idSite:String='';
-    sitePhoto:String='';
-    siteName:string=''
-  
-    private siteService=inject(SitesService);
-  router:Router=inject(Router);
-  activatedRoute:ActivatedRoute=inject(ActivatedRoute)
-   ngOnInit(): void {
-     this.idSite=this.activatedRoute.snapshot.params['idsite'];
-        this.siteService.getSites().subscribe({
-        next: (data)=>{
-          this.site=data.filter(site=>site.id==this.idSite);
-          this.sitePhoto=this.site[0].thumbnail
-          this.galery=this.site[0].gallery || [];  
-          this.commentes=this.site[0].comments||[];
-          this.siteName=this.site[0].title
+  private readonly siteService = inject(SitesService);
+  private readonly router: Router = inject(Router);
+  private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute)
+  sites: Site[] = [];
+  galery: String[] = [];
+  commentes: Comment[] = [];
+  idSite: String = '';
+  sitePhoto: String = '';
+  siteName: string = ''
 
-            
-        },
-        error: (err)=>{
-          console.error('Error fetching sites:', err);
-        },
-      });
-   }
-    returnToSites(){
-      this.router.navigate(['/siteList'])
-      
-    }
-   
-   
- 
-   
+  ngOnInit(): void {
+    this.idSite = this.activatedRoute.snapshot.params['idsite'];
+    this.siteService.getSites().subscribe(
+      data => {
+        this.sites = data.filter(site => site.id == this.idSite);
+        this.sitePhoto = this.sites[0].thumbnail
+        this.galery = this.sites[0].gallery || [];
+        this.commentes = this.sites[0].comments || [];
+        this.siteName = this.sites[0].title;
+    });
+  }
+
+  returnToSites() {
+    this.router.navigate(['/siteList'])
+  }
+
+
+
+
 
 
 }

@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SiteContent } from '../site-content/site-content';
-import { Sites } from '../../model/sites';
 import { SitesService } from '../../services/sites-service';
 import { FormsModule } from '@angular/forms';
+import { Site } from '../../model/site';
 
 @Component({
   selector: 'app-site-list',
@@ -11,42 +11,38 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './site-list.css',
 })
 export class SiteList implements OnInit {
-  siteList: Sites[]=[];
-  siteRechercher:Sites[]=[];
-  siteFiltered:Sites[]=[];
+  private readonly siteService=inject(SitesService);
+  siteList: Site[]=[];
+  sitesResearched:Site[]=[];
+  sitesFiltered:Site[]=[];
   site:string="";
   minPrice:number=0;
 
-  private siteService=inject(SitesService);
-
   ngOnInit(){
-      this.siteService.getSites().subscribe({
-        next: (data)=>{
+      this.siteService.getSites().subscribe(
+        data=>{
           this.siteList=data;
-          this.siteRechercher=data;
-          this.siteFiltered=data;
-        },
-        error: (err)=>{
-          console.error('Error fetching sites:', err);
-        },
-      });      
+          this.sitesResearched=data;
+          this.sitesFiltered=data;
+        }
+      );      
   }
 
-  rechercherSite() {
+  researchSites() {
   const exactMatch = this.siteList.filter(s => s.title === this.site.trim());
    
   if (exactMatch.length > 0) {
-    this.siteRechercher = exactMatch;
+    this.sitesResearched = exactMatch;
   } else if (this.site.trim()) {
-    this.siteRechercher = this.siteList.filter(s => s.title[0].toLowerCase() === this.site[0].toLowerCase());
+    this.sitesResearched = this.siteList.filter(s => s.title[0].toLowerCase() === this.site[0].toLowerCase());
   } else {
-    this.siteRechercher =this.siteList;
+    this.sitesResearched =this.siteList;
   }
-  this.siteFiltered=this.siteRechercher;
+  this.sitesFiltered=this.sitesResearched;
   }
 
   priceSlider(){
-      this.siteFiltered=this.siteRechercher.filter(s=>s.price>=Number(this.minPrice));
+      this.sitesFiltered=this.sitesResearched.filter(s=>s.price>=this.minPrice);
   }
 
 }

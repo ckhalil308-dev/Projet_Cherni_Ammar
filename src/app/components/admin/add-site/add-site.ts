@@ -36,8 +36,8 @@ export class AddSite implements OnInit{
       price : [10,[Validators.required]],
       creation_date : ["00500-01-01",[Validators.required]],
       isBC : [false],
-      rating : [4.4,[Validators.required]],
-      openingHours : ["08:00 - 17:00",[Validators.required]],
+      rating : [4.4,[Validators.required, Validators.min(0), Validators.max(5)]],
+      openingHours : ["08:00 - 17:00",[Validators.required, Validators.pattern("^([01][0-9]|2[0-3]):([0-5][0-9]) - ([01][0-9]|2[0-3]):([0-5][0-9])$")]],
       visitorsPerYear : [200000,[Validators.required]],
       description : ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.",[Validators.required]],
       thumbnail : ["",Validators.required],
@@ -87,9 +87,15 @@ export class AddSite implements OnInit{
             if(urls.length===files.length){
               this.siteForm.get('gallery')?.setValue(urls);
             }
-          }
-        )
-      }
-    )
+          })
+      })
+  }
+  isInvalidRating(){
+    const price= this.siteForm.get('rating');
+    return price && price.invalid && price.touched;
+  }
+  isInvalidHours(){
+    const hours=this.siteForm.get('openingHours');
+    return hours && hours.invalid && hours.touched;
   }
 }

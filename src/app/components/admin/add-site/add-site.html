@@ -5,6 +5,9 @@
     <label for="title" class="form-label">Title</label>
     <input formControlName="title" type="text" id="title" name="title" class="form-control">
   </div>
+  @if (isInvalidTitle()){
+    <div class="alert alert-danger">.</div>
+  }
 
   <div class="mb-3">
     <label for="era" class="form-label">Era</label>
@@ -45,7 +48,7 @@
     <input formControlName="openingHours" type="text" id="openingHours" name="openingHours" class="form-control" placeholder="e.g. 09:00 - 19:00">
   </div>
   @if (isInvalidHours()){
-    <div class="alert alert-danger">Opening hours must be in the format HH:MM - HH:MM (e.g., 09:00 - 19:00)</div>
+    <div class="alert alert-danger">Opening hours must be in the format HH:MM - HH:MM</div>
   }
 
   <div class="mb-3">

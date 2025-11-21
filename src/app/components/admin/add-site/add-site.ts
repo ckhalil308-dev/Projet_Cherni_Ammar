@@ -12,90 +12,120 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './add-site.html',
   styleUrl: './add-site.css',
 })
-export class AddSite implements OnInit{
-  private readonly router:Router=inject(Router)
-  private readonly snackbar:MatSnackBar=inject(MatSnackBar)
-  private readonly fb : FormBuilder = inject(FormBuilder);
-  private readonly sitesService:SitesService=inject(SitesService);
-  private readonly http:HttpClient=inject(HttpClient);
-  sites:Site[]=[];
+export class AddSite implements OnInit {
+  private readonly router: Router = inject(Router)
+  private readonly snackbar: MatSnackBar = inject(MatSnackBar)
+  private readonly fb: FormBuilder = inject(FormBuilder);
+  private readonly sitesService: SitesService = inject(SitesService);
+  private readonly http: HttpClient = inject(HttpClient);
+  sites: Site[] = [];
   siteForm!: FormGroup;
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.sitesService.getSites().subscribe(
-      data=>{
-        this.sites=data;
+      data => {
+        this.sites = data;
       }
     )
-    
+
     this.siteForm = this.fb.nonNullable.group({
-      id :[],
-      title : ["Kerkouane",[Validators.required]],
-      era : ["Punic",[Validators.required]],
-      address : ["Kerkouane, Nabeul Governorate, Tunisia",[Validators.required]],
-      price : [10,[Validators.required]],
-      creation_date : ["00500-01-01",[Validators.required]],
-      isBC : [false],
-      rating : [4.4,[Validators.required, Validators.min(0), Validators.max(5)]],
-      openingHours : ["08:00 - 17:00",[Validators.required, Validators.pattern("^([01][0-9]|2[0-3]):([0-5][0-9]) - ([01][0-9]|2[0-3]):([0-5][0-9])$")]],
-      visitorsPerYear : [200000,[Validators.required]],
-      description : ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.",[Validators.required]],
-      thumbnail : ["",Validators.required],
-      gallery :FormArray,
-      open : [false]
+      id: [],
+      title: ["Kerkouane", [Validators.required]],
+      era: ["Punic", [Validators.required]],
+      address: ["Kerkouane, Nabeul Governorate, Tunisia", [Validators.required]],
+      price: [10, [Validators.required]],
+      creation_date: ["00500-01-01", [Validators.required]],
+      isBC: [false],
+      rating: [4.4, [Validators.required, Validators.min(0), Validators.max(5)]],
+      openingHours: ["08:00 - 17:00", [Validators.required, Validators.pattern("^([01][0-9]|2[0-3]):([0-5][0-9]) - ([01][0-9]|2[0-3]):([0-5][0-9])$")]],
+      visitorsPerYear: [200000, [Validators.required]],
+      description: ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.", [Validators.required]],
+      thumbnail: ["", Validators.required],
+      gallery: FormArray,
+      open: [false]
     })
-    
+
   }
 
   onSubmit() {
-    this.siteForm.get('id')?.setValue(this.sites.length+1);
-    let s:Site=this.siteForm.value;
+    this.siteForm.get('id')?.setValue(this.sites.length + 1);
+    let s: Site = this.siteForm.value;
     this.sitesService.addSite(s).subscribe(
-      data=>{
+      data => {
         console.log(data);
         this.sites.push(s);
-        this.snackbar.open("site added successfully !" ,"close" ,{
-          duration:3000,
+        this.snackbar.open("site added successfully !", "close", {
+          duration: 3000,
           verticalPosition: "top",
           horizontalPosition: "left"
         })
       }
-    ) 
+    )
     this.router.navigate(["/admindash"])
   }
 
-  onThumbnailSelected(e: any){
-    const file=e.target.files[0];
-    const fd= new FormData();
-    fd.append('image',file);
-    this.http.post<{url: string}>('http://localhost:3000/upload',fd).subscribe(
-      data=>this.siteForm.get('thumbnail')?.setValue(data.url)
+  onThumbnailSelected(e: any) {
+    const file = e.target.files[0];
+    const fd = new FormData();
+    fd.append('image', file);
+    this.http.post<{ url: string }>('http://localhost:3000/upload', fd).subscribe(
+      data => this.siteForm.get('thumbnail')?.setValue(data.url)
     )
   }
 
-  onGallerySelected(e: any){
-    const files:File[]=Array.from(e.target.files);
-    const urls:string[]=[];
+  onGallerySelected(e: any) {
+    const files: File[] = Array.from(e.target.files);
+    const urls: string[] = [];
 
     files.forEach(
-      f=>{
-        const fd=new FormData();
-        fd.append('image',f);
-        this.http.post<{url:string}>('http://localhost:3000/upload',fd).subscribe(
-          data=>{
+      f => {
+        const fd = new FormData();
+        fd.append('image', f);
+        this.http.post<{ url: string }>('http://localhost:3000/upload', fd).subscribe(
+          data => {
             urls.push(data.url);
-            if(urls.length===files.length){
+            if (urls.length === files.length) {
               this.siteForm.get('gallery')?.setValue(urls);
             }
           })
       })
   }
-  isInvalidRating(){
-    const price= this.siteForm.get('rating');
+
+  isInvalidTitle() {
+    const title = this.siteForm.get('title');
+    return title && title.invalid && title.touched;
+  }
+  isInvalidEra() {
+    const era = this.siteForm.get('era');
+    return era && era.invalid && era.touched;
+  }
+  isInvalidAddress() {
+    const address = this.siteForm.get('address');
+    return address && address.invalid && address.touched;
+  }
+  isInvalidPrice() {
+    const control = this.siteForm.get('price');
+    return control && control.invalid && control.touched;
+  }
+  isInvalidCreationDate() {
+    const control = this.siteForm.get('creation_date');
+    return control && control.invalid && control.touched;
+  }
+  isInvalidRating() {
+    const price = this.siteForm.get('rating');
     return price && price.invalid && price.touched;
   }
-  isInvalidHours(){
-    const hours=this.siteForm.get('openingHours');
+  isInvalidHours() {
+    const hours = this.siteForm.get('openingHours');
     return hours && hours.invalid && hours.touched;
   }
+  isInvalidVisitorsPerYear() {
+    const visits = this.siteForm.get('visitorsPerYear');
+    return visits && visits.invalid && visits.touched;
+  }
+  isInvalidDescription() {
+    const description = this.siteForm.get('description');
+    return description && description.invalid && description.touched;
+  }
+
 }

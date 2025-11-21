@@ -105,4 +105,40 @@ export class EditSite implements OnInit {
       }
     )
   }
+    isInvalidTitle() {
+    const title = this.siteForm.get('title');
+    return title && title.invalid && title.touched;
+  }
+  isInvalidEra() {
+    const era = this.siteForm.get('era');
+    return era && era.invalid && era.touched;
+  }
+  isInvalidAddress() {
+    const address = this.siteForm.get('address');
+    return address && address.invalid && address.touched;
+  }
+  isInvalidPrice() {
+    const control = this.siteForm.get('price');
+    return control && control.invalid && control.touched;
+  }
+  isInvalidCreationDate() {
+    const control = this.siteForm.get('creation_date');
+    return control && control.invalid && control.touched;
+  }
+  isInvalidRating() {
+    const price = this.siteForm.get('rating');
+    return price && price.invalid && price.touched;
+  }
+  isInvalidHours() {
+    const hours = this.siteForm.get('openingHours');
+    return hours && hours.invalid && hours.touched;
+  }
+  isInvalidVisitors() {
+    const visits = this.siteForm.get('visitorsPerYear');
+    return visits && visits.invalid && visits.touched;
+  }
+  isInvalidDescription() {
+    const description = this.siteForm.get('description');
+    return description && description.invalid && description.touched;
+  }
 }

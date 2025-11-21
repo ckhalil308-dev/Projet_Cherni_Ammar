@@ -127,9 +127,5 @@ export class AddSite implements OnInit {
     const description = this.siteForm.get('description');
     return description && description.invalid && description.touched;
   }
-  isInvalidThumbnail() {
-    const thumbnail = this.siteForm.get('thumbnail');
-    return thumbnail && thumbnail.invalid && thumbnail.touched;
-  }
 
 }

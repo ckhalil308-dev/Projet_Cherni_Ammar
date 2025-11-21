@@ -81,9 +81,6 @@
     <label for="formFile" class="form-label">Thumbnail</label>
     <input (change)="onThumbnailSelected($event)" class="form-control" type="file" id="formFile">
   </div>
-  @if (isInvalidThumbnail()){
-    <div class="alert alert-danger">Thumbnail is required.</div>
-  }
 
   <div class="mb-3">
     <label for="formFileMultiple" class="form-label">Gallery</label>
@@ -95,7 +92,6 @@
     <input type="checkbox" id="open" name="open" formControlName="open" class="form-check-input m-1" style="transform: scale(1.5)">
      Open
   </div>
-
 
   <div class="d-flex gap-2">
     <button type="button" class="btn btn-dark w-100" routerLink="/admindash">Cancel</button>

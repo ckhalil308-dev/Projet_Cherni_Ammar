@@ -17,28 +17,33 @@ export class AdminLogin {
   d:string='';
   username:String='';
   password:String=''; 
-  // userName:string='admin';
-  // Password:string='admin@123';
 
 login(){
-  if(this.siteservice.login(this.username,this.password)){
-    localStorage.setItem('role', 'admin');
-
+ 
+  this.siteservice.login(this.username,this.password).subscribe(
+    data=>{
+      if(data.length>0){
+        localStorage.setItem('role', 'admin');  
+   
+      localStorage.setItem('role', 'admin');
     this.snackBar.open('Login Successful!', 'Close', {
       duration: 1500,
       verticalPosition: 'top',
       horizontalPosition: 'left',
     });
-     this.router.navigate(['/admindash'])
-   
-  }
-  else {
-    this.snackBar.open('Login Failed! Incorrect Username or Password', 'Close', {
+     this.router.navigate(['/admindash']) }
+    else{
+       this.snackBar.open('Login Failed! Incorrect Username or Password', 'Close', {
       duration: 3000,
       verticalPosition: 'top',
       horizontalPosition: 'left',
     });
+
+    }
+
+
   }
+  )
 }
 
   

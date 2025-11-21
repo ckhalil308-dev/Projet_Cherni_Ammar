@@ -18,44 +18,87 @@ export class Changepasswords {
   currentPassword:string=''
   newPassword: string = ''
   confirmPassword:string=''
-
-adminPassword() {
-  if (!this.siteService.checkPassword(this.currentPassword)) {
-    this.snackBar.open("Old password is incorrect!", "Close", {
-      duration: 1500,
-      verticalPosition: "top",
-      horizontalPosition: "left",
-    });
-  }
-  else if (this.newPassword.length <= 6) {
+  adminPassword() {
+  if (this.newPassword.length <= 6) {
     this.snackBar.open("New password must be longer than 6 characters!", "Close", {
       duration: 1500,
       verticalPosition: "top",
       horizontalPosition: "left",
     });
+    return;
   }
-  else if (this.newPassword !== this.confirmPassword) {
+
+  if (this.newPassword !== this.confirmPassword) {
     this.snackBar.open("New passwords do not match!", "Close", {
       duration: 1500,
       verticalPosition: "top",
       horizontalPosition: "left",
     });
+    return;
   }
-  else {
-    this.siteService.setPassword(this.newPassword);
-    this.snackBar.open("Password changed successfully!", "Close", {
-      duration: 1500,
-      verticalPosition: "top",
-      horizontalPosition: "left",
+  this.siteService.updatePassword("admin", this.currentPassword, this.newPassword)
+    .subscribe({
+      next: (res: any) => {
+        this.snackBar.open(res.message, "Close", {
+          duration: 1500,
+          verticalPosition: "top",
+          horizontalPosition: "left",
+        });
+        this.currentPassword = '';
+        this.newPassword = '';
+        this.confirmPassword = '';
+
+        this.router.navigate(["/admin"]);
+      },
+      error: (err:any) => {
+        this.snackBar.open(err.error.message || "Failed to change password", "Close", {
+          duration: 2000,
+          verticalPosition: "top",
+          horizontalPosition: "left",
+        });
+      }
     });
-
-    this.currentPassword = '';
-    this.newPassword = '';
-    this.confirmPassword = '';
-    this.router.navigate(["/admin"]);
-
-  }
 }
+
+
+// adminPassword() {
+//   if (!this.siteService.checkPassword(this.currentPassword)) {
+//     this.snackBar.open("Old password is incorrect!", "Close", {
+//       duration: 1500,
+//       verticalPosition: "top",
+//       horizontalPosition: "left",
+//     });
+//   }
+//   else if (this.newPassword.length <= 6) {
+//     this.snackBar.open("New password must be longer than 6 characters!", "Close", {
+//       duration: 1500,
+//       verticalPosition: "top",
+//       horizontalPosition: "left",
+//     });
+//   }
+//   else if (this.newPassword !== this.confirmPassword) {
+//     this.snackBar.open("New passwords do not match!", "Close", {
+//       duration: 1500,
+//       verticalPosition: "top",
+//       horizontalPosition: "left",
+//     });
+//   }
+//   else {
+//     this.siteService.setPassword(this.newPassword);
+//     this.snackBar.open("Password changed successfully!", "Close", {
+//       duration: 1500,
+//       verticalPosition: "top",
+//       horizontalPosition: "left",
+//     });
+
+//     this.currentPassword = '';
+//     this.newPassword = '';
+//     this.confirmPassword = '';
+//     this.router.navigate(["/admin"]);
+
+//   }
+// }
+
 }
 
 

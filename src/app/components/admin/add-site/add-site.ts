@@ -33,12 +33,12 @@ export class AddSite implements OnInit {
       title: ["Kerkouane", [Validators.required]],
       era: ["Punic", [Validators.required]],
       address: ["Kerkouane, Nabeul Governorate, Tunisia", [Validators.required]],
-      price: [10, [Validators.required]],
+      price: [10, [Validators.required, Validators.min(0.1)]],
       creation_date: ["00500-01-01", [Validators.required]],
       isBC: [false],
       rating: [4.4, [Validators.required, Validators.min(0), Validators.max(5)]],
       openingHours: ["08:00 - 17:00", [Validators.required, Validators.pattern("^([01][0-9]|2[0-3]):([0-5][0-9]) - ([01][0-9]|2[0-3]):([0-5][0-9])$")]],
-      visitorsPerYear: [200000, [Validators.required]],
+      visitorsPerYear: [200000, [Validators.required, Validators.min(0)]],
       description: ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.", [Validators.required]],
       thumbnail: ["", Validators.required],
       gallery: FormArray,
@@ -119,13 +119,17 @@ export class AddSite implements OnInit {
     const hours = this.siteForm.get('openingHours');
     return hours && hours.invalid && hours.touched;
   }
-  isInvalidVisitorsPerYear() {
+  isInvalidVisitors() {
     const visits = this.siteForm.get('visitorsPerYear');
     return visits && visits.invalid && visits.touched;
   }
   isInvalidDescription() {
     const description = this.siteForm.get('description');
     return description && description.invalid && description.touched;
+  }
+  isInvalidThumbnail() {
+    const thumbnail = this.siteForm.get('thumbnail');
+    return thumbnail && thumbnail.invalid && thumbnail.touched;
   }
 
 }

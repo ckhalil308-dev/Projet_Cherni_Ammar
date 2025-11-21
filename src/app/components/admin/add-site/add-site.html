@@ -6,33 +6,43 @@
     <input formControlName="title" type="text" id="title" name="title" class="form-control">
   </div>
   @if (isInvalidTitle()){
-    <div class="alert alert-danger">.</div>
+    <div class="alert alert-danger">Title is required.</div>
   }
 
   <div class="mb-3">
     <label for="era" class="form-label">Era</label>
     <input formControlName="era" type="text" id="era" name="era" class="form-control">
   </div>
+  @if (isInvalidEra()){
+    <div class="alert alert-danger">Era is required.</div>
+  }
 
   <div class="mb-3">
     <label for="address" class="form-label">Address</label>
     <input formControlName="address" type="text" id="address" name="address" class="form-control">
   </div>
+  @if (isInvalidAddress()){
+    <div class="alert alert-danger">Address is required.</div>
+  }
 
   <div class="mb-3">
     <label for="price" class="form-label">Price</label>
     <input formControlName="price" type="number" id="price" name="price" class="form-control">
   </div>
+  @if (isInvalidPrice()){
+    <div class="alert alert-danger">Price must be a at least 0.1TND.</div>
+  }
 
   <div class="mb-3">
     <label for="creation_date" class="form-label">Creation Date</label>
     <input formControlName="creation_date" type="date" id="creation_date" name="creation_date" class="form-control">
-    
-     
   </div>
+  @if (isInvalidCreationDate()){
+    <div class="alert alert-danger">Creation Date is required.</div>
+  }
+
   <div class="mb-3">
     <label for="isBC"> <input  type="checkbox" name="isBC" formControlName="isBC" > B.C</label>
- 
   </div>
 
   <div class="mb-3">
@@ -55,16 +65,25 @@
     <label for="visitorsPerYear" class="form-label">Visitors per Year</label>
     <input formControlName="visitorsPerYear" type="number" id="visitorsPerYear" name="visitorsPerYear" class="form-control">
   </div>
+  @if (isInvalidVisitors()){
+    <div class="alert alert-danger">Visitors per year is required.</div>
+  }
 
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
     <textarea formControlName="description" id="description" name="description" class="form-control" rows="4"></textarea>
   </div>
+  @if (isInvalidDescription()){
+    <div class="alert alert-danger">Description is required.</div>
+  }
 
   <div class="mb-3">
     <label for="formFile" class="form-label">Thumbnail</label>
     <input (change)="onThumbnailSelected($event)" class="form-control" type="file" id="formFile">
   </div>
+  @if (isInvalidThumbnail()){
+    <div class="alert alert-danger">Thumbnail is required.</div>
+  }
 
   <div class="mb-3">
     <label for="formFileMultiple" class="form-label">Gallery</label>
@@ -76,7 +95,7 @@
     <input type="checkbox" id="open" name="open" formControlName="open" class="form-check-input m-1" style="transform: scale(1.5)">
      Open
   </div>
-  
+
 
   <div class="d-flex gap-2">
     <button type="button" class="btn btn-dark w-100" routerLink="/admindash">Cancel</button>

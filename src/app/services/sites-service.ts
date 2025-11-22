@@ -41,10 +41,6 @@ export class SitesService {
   deleteComment(siteId: string, commentId: string): Observable<Comment>{
     return this.http.delete<Comment>(`${this.apiUrl}/${siteId}/comments/${commentId}`);
   }
-
-  //  login(user: String, pass: String): boolean {
-  //   return user.trim() === this.userName && pass === this.password;
-  // }
   login(user: String, pass: String):Observable<Admin[]>{
     return this.http.get<Admin[]>(`${this.apiAdminUrl}?username=${user}&password=${pass}`);
   }
@@ -57,13 +53,6 @@ export class SitesService {
 }
 
 
-  // checkPassword(password:string){
-  //   return this.password==password
-  // }
-  // setPassword(password:string){
-  //   this.password=password
-  //   localStorage.setItem("password",password)
-  // }
 
 
 

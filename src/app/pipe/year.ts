@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'bCAC'
+  name: 'year'
 })
-  export class BCACPipe implements PipeTransform {
+  export class year implements PipeTransform {
      transform(date:  Date): Number {
     const d = new Date(date);
     const year = d.getFullYear();          

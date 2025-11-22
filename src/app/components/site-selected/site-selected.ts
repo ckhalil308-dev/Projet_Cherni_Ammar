@@ -2,13 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
 import { DatePipe } from '@angular/common';
-import { BCACPipe } from '../../pipe/bc-ac-pipe';
+
 import { Site } from '../../model/site';
 import { Comment } from '../../model/comment';
+import { year } from '../../pipe/year';
+import { StarsPipe } from '../../pipe/stars-pipe';
 
 @Component({
   selector: 'app-site-selected',
-  imports: [DatePipe, BCACPipe],
+  imports: [ year,StarsPipe],
   templateUrl: './site-selected.html',
   styleUrl: './site-selected.css',
 })

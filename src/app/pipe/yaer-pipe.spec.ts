@@ -1,4 +1,4 @@
-import { BCACPipe } from './bc-ac-pipe';
+import { BCACPipe } from './year';
 
 describe('BCACPipe', () => {
   it('create an instance', () => {

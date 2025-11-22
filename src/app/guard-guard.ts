@@ -12,12 +12,6 @@ export const guardGuard: CanActivateFn = (route, state) => {
     return true; 
   }
 
-  snackBar.open('Access denied!', 'Close', {
-    duration: 3000,
-    verticalPosition: 'top',
-    horizontalPosition: 'left',
-  }); 
-
   router.navigate(['/admin']);
   return false; 
 };

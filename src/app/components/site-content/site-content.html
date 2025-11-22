@@ -7,7 +7,7 @@
     <p class="card-text text-muted mb-1"><b>Visitors: </b><span class=" text-dark">{{site.visitorsPerYear}}</span></p>
     <p class="card-text text-muted mb-1"><b>Price: </b><span class=" text-dark">{{site.price | currency:'TND':'symbol':'1.2' }}</span></p>
     <p class="card-text mb-2"><b>Rating: </b> <span class="text-warning">{{site.rating}}⭐</span></p>
-    <a class="btn btn-sm btn-primary w-100" [routerLink]="['/siteselected', site.id]">More Info</a>
+    <a class="btn btn-sm btn-primary w-100 d-flex gap-2 justify-content-center" [routerLink]="['/siteselected', site.id]">More Info <i class="bi bi-eye"></i></a>
   </div>
 </div>
 

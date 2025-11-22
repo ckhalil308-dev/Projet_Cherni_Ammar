@@ -12,4 +12,5 @@ import { Site } from '../../model/site';
 export class SiteContent {
   @Input() site!:Site;
 
+  
 }

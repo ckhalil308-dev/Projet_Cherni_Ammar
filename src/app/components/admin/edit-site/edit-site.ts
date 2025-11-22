@@ -65,7 +65,8 @@ export class EditSite implements OnInit {
     const idSite = this.activatedRoute.snapshot.params['idsite'];
     const site: Site = this.siteForm.value;
     this.sitesService.updateSite(idSite,site).subscribe(
-      ()=>{
+      data=>{
+        console.log(data);
         this.snackbar.open("site edited successfully !" ,"close" ,{
           duration:3000,
            verticalPosition: "top",

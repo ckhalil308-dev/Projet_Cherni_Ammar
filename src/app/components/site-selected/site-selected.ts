@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SitesService } from '../../services/sites-service';
-import { DatePipe } from '@angular/common';
-
 import { Site } from '../../model/site';
 import { Comment } from '../../model/comment';
 import { year } from '../../pipe/year';
 import { StarsPipe } from '../../pipe/stars-pipe';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-site-selected',
@@ -25,6 +25,7 @@ export class SiteSelected implements OnInit {
   sitePhoto: String = '';
   siteName: string = ''
 
+
   ngOnInit(): void {
     this.idSite = this.activatedRoute.snapshot.params['idsite'];
     this.siteService.getSites().subscribe(
@@ -41,7 +42,22 @@ export class SiteSelected implements OnInit {
     this.router.navigate(['/siteList'])
   }
 
+  lat!:string;
+  lon!:string;
 
+  afficher(name:string){
+    name = name.trim().replace(/ /g, '_');
+    this.siteService.getWiki(name).subscribe(data => {
+
+      if (data.coordinates) {
+        console.log(data.coordinates);
+        this.lat = data.coordinates.lat;
+        this.lon = data.coordinates.lon;
+      } else {
+        console.log("Coordinates not found.");
+      }
+    });
+  }
 
 
 

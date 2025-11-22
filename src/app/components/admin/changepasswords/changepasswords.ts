@@ -1,8 +1,8 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { SitesService } from '../../../services/sites-service';
+import { AdminService } from '../../../services/admin-service';
 
 @Component({
   selector: 'app-changepasswords',
@@ -13,7 +13,7 @@ import { SitesService } from '../../../services/sites-service';
 export class Changepasswords {
   private readonly router:Router = inject(Router);
   private readonly snackBar: MatSnackBar = inject(MatSnackBar);
-  private readonly siteService:SitesService=inject(SitesService)
+  private readonly adminService:AdminService=inject(AdminService);
 
   currentPassword:string=''
   newPassword: string = ''
@@ -36,7 +36,7 @@ export class Changepasswords {
     });
     return;
   }
-  this.siteService.updatePassword("admin", this.currentPassword, this.newPassword)
+  this.adminService.updatePassword("admin", this.currentPassword, this.newPassword)
     .subscribe({
       next: (res: any) => {
         this.snackBar.open(res.message, "Close", {

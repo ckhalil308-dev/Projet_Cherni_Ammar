@@ -2,58 +2,44 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Site } from '../model/site';
-import { Admin } from '../model/admin';
+import { Location } from '../model/location';
+
+const apiUrl = 'http://localhost:3000/sites';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SitesService {
-  // userName:String="admin"
-  //  password: string = localStorage.getItem("password") || "admin@123";
-
-
-  private apiUrl = 'http://localhost:3000/sites';
-  private apiAdminUrl = 'http://localhost:3000/admin';
-
-  private http = inject(HttpClient);
+  private readonly http: HttpClient = inject(HttpClient);
 
 
   getSites(): Observable<Site[]> {
-    return this.http.get<Site[]>(this.apiUrl);
+    return this.http.get<Site[]>(apiUrl);
   }
 
   getSiteById(id: string): Observable<Site> {
-    return this.http.get<Site>(`${this.apiUrl}/${id}`);
+    return this.http.get<Site>(`${apiUrl}/${id}`);
   }
 
   addSite(site: Site): Observable<Site> {
-    return this.http.post<Site>(this.apiUrl, site);
+    return this.http.post<Site>(apiUrl, site);
   }
 
   updateSite(id: string, site: Site): Observable<Site> {
-    return this.http.put<Site>(`${this.apiUrl}/${id}`, site);
+    return this.http.put<Site>(`${apiUrl}/${id}`, site);
   }
 
   deleteSite(id: string): Observable<Site> {
-    return this.http.delete<Site>(`${this.apiUrl}/${id}`);
+    return this.http.delete<Site>(`${apiUrl}/${id}`);
   }
 
   deleteComment(siteId: string, commentId: string): Observable<Comment> {
-    return this.http.delete<Comment>(`${this.apiUrl}/${siteId}/comments/${commentId}`);
+    return this.http.delete<Comment>(`${apiUrl}/${siteId}/comments/${commentId}`);
   }
-  login(user: String, pass: String): Observable<Admin[]> {
-    return this.http.get<Admin[]>(`${this.apiAdminUrl}?username=${user}&password=${pass}`);
-  }
-  updatePassword(username: string, oldPassword: string, newPassword: string): Observable<any> {
-    return this.http.put<any>(`${this.apiAdminUrl}/password`, {
-      username,
-      oldPassword,
-      newPassword
-    });
-  }
+  
 
-  getWiki(name: string): Observable<any> {
-    return this.http.get<any>(`https://en.wikipedia.org/api/rest_v1/page/summary/${name}`);
+  getCoordinates(name: string): Observable<Location> {
+    return this.http.get<Location>(`https://en.wikipedia.org/api/rest_v1/page/summary/${name}`);
   }
 
 

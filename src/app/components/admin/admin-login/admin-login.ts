@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { SitesService } from '../../../services/sites-service';
+import { AdminService } from '../../../services/admin-service';
 
 @Component({
   selector: 'app-admin-login',
@@ -11,7 +11,7 @@ import { SitesService } from '../../../services/sites-service';
   styleUrl: './admin-login.css',
 })
 export class AdminLogin {
-  private readonly siteservice:SitesService=inject(SitesService)
+  private readonly adminService:AdminService=inject(AdminService);
   private snackBar: MatSnackBar = inject(MatSnackBar);
   private readonly router:Router=inject(Router);
   d:string='';
@@ -20,7 +20,7 @@ export class AdminLogin {
 
 login(){
  
-  this.siteservice.login(this.username,this.password).subscribe(
+  this.adminService.login(this.username,this.password).subscribe(
     data=>{
       if(data.length>0){
         localStorage.setItem('role', 'admin');  

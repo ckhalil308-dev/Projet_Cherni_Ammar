@@ -5,12 +5,11 @@ import { Site } from '../../model/site';
 import { Comment } from '../../model/comment';
 import { year } from '../../pipe/year';
 import { StarsPipe } from '../../pipe/stars-pipe';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { SiteMap } from '../site-map/site-map';
 
 @Component({
   selector: 'app-site-selected',
-  imports: [ year,StarsPipe],
+  imports: [year, StarsPipe, SiteMap],
   templateUrl: './site-selected.html',
   styleUrl: './site-selected.css',
 })
@@ -35,24 +34,23 @@ export class SiteSelected implements OnInit {
         this.galery = this.sites[0].gallery || [];
         this.commentes = this.sites[0].comments || [];
         this.siteName = this.sites[0].title;
-    });
+      });
   }
 
   returnToSites() {
     this.router.navigate(['/siteList'])
   }
 
-  lat!:string;
-  lon!:string;
+  lat!: number;
+  lon!: number;
 
-  afficher(name:string){
+  getCoords(name: string) {
     name = name.trim().replace(/ /g, '_');
-    this.siteService.getWiki(name).subscribe(data => {
-
+    this.siteService.getCoordinates(name).subscribe(data => {
       if (data.coordinates) {
-        console.log(data.coordinates);
         this.lat = data.coordinates.lat;
         this.lon = data.coordinates.lon;
+        console.log(this.lat, this.lon);
       } else {
         console.log("Coordinates not found.");
       }

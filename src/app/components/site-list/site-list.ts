@@ -13,7 +13,7 @@ import { Site } from '../../model/site';
 export class SiteList implements OnInit {
   private readonly siteService=inject(SitesService);
   siteList: Site[]=[];
-  sitesResearched:Site[]=[];
+
   sitesFiltered:Site[]=[];
   site:string="";
   minPrice:number=0;
@@ -22,27 +22,39 @@ export class SiteList implements OnInit {
       this.siteService.getSites().subscribe(
         data=>{
           this.siteList=data;
-          this.sitesResearched=data;
           this.sitesFiltered=data;
         }
       );      
   }
 
-  researchSites() {
-  const exactMatch = this.siteList.filter(s => s.title === this.site.trim());
-   
-  if (exactMatch.length > 0) {
-    this.sitesResearched = exactMatch;
-  } else if (this.site.trim()) {
-    this.sitesResearched = this.siteList.filter(s => s.title[0].toLowerCase() === this.site[0].toLowerCase());
-  } else {
-    this.sitesResearched =this.siteList;
-  }
-  this.sitesFiltered=this.sitesResearched;
-  }
+researchSites() {
 
-  priceSlider(){
-      this.sitesFiltered=this.sitesResearched.filter(s=>s.price>=this.minPrice);
-  }
+    const search = this.site.trim().toLowerCase();
 
+    let filtered: Site[] = [];
+
+    if (search === "") {
+      filtered = this.siteList;
+    } else {
+      const exactMatch = this.siteList.filter(siteItem => 
+              siteItem.title.toLowerCase() === search
+      );
+
+      if (exactMatch.length > 0) {
+        filtered = exactMatch;
+      } else {
+        filtered = this.siteList.filter(siteItem => 
+           siteItem.title[0].toLowerCase() === search[0]
+        );
+      }
+    }
+    this.sitesFiltered = filtered.filter(siteItem => 
+        siteItem.price >= this.minPrice
+    );
+  }
+  priceSlider() {
+    this.researchSites();
+  }
 }
+  
+

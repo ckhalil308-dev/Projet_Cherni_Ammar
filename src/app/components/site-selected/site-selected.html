@@ -107,14 +107,21 @@
            </div>
        }
        </div>
-  <div class="d-flex flex-column  justify-content-center gap-3">
-      <input type="text" placeholder="ajouter un commentaire">
-      <button class=" d-flex justify-content-center ADDCOMM" type="submit">
-        add Comments
-</button>
-</div>
+  
+  
+    <form  [formGroup]="commentForm"   class="d-flex flex-column   justify-content-center gap-3 "  (ngSubmit)="onSubmit()">
+      <input formControlName="author"  type="text" placeholder="enter your name and last name">
+      <input formControlName="rating"  type="number" placeholder="enter your rating" >
+        @if (isInvalidRating()){
+    <div class="alert alert-danger">Rating must be between 0 and 5.</div>
+  }
+      <textarea formControlName="content"  type="text" placeholder="ajouter un commentaire"></textarea>
+      <input class=" btn  d-flex justify-content-center ADDCOMM" type="submit" value=" add Comments" [disabled]="commentForm.invalid">
+       
+
+</form>
 
       </div>
   </div>
-  <button type="button" (click)="getCoords(sites[0].title)">tester</button>
+  <!-- <button type="button" (click)="getCoords(sites[0].title)">tester</button> -->
   <app-site-map></app-site-map>

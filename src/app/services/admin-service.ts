@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { Admin } from '../model/admin';
 import { HttpClient } from '@angular/common/http';
 
-const apiAdminUrl = 'http://localhost:3000/admin';
+// const apiAdminUrl = 'http://localhost:3000/admin';
+const apiAdminUrl = 'https://project-backend-5z3s.onrender.com/admin';
 
 @Injectable({
   providedIn: 'root',

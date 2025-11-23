@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Nav } from './components/nav/nav';
 import { AdminNav } from "./components/admin/admin-nav/admin-nav";

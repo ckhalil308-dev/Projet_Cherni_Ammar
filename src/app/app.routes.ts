@@ -1,4 +1,4 @@
-import { ChildrenOutletContexts, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
 import { AdminLogin } from './components/admin/admin-login/admin-login';
 import { Error } from './components/error/error';
@@ -11,7 +11,6 @@ import { AdminComments } from './components/admin/admin-comments/admin-comments'
 import { AddSite } from './components/admin/add-site/add-site';
 import { guardGuard } from './guard-guard';
 import { EditSite } from './components/admin/edit-site/edit-site';
-import { SiteMap } from './components/site-map/site-map';
 import { ContactNav } from './components/contact-nav/contact-nav';
 import { FAQ } from './components/f.a.q/f.a.q';
 
@@ -24,9 +23,6 @@ export const routes: Routes = [
                { path:'contactForm', title:"Contact", component:Contact},
                { path:'F.A.Q', title:"F.A.Q", component:FAQ},
               { path:'',redirectTo:'contactForm', pathMatch:'full' },
-
-
-
             ]
       },  
    

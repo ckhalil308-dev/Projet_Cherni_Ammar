@@ -22,14 +22,12 @@ export class SiteSelected implements OnInit {
   gallery: string[] = [];
   comments: Comment[] = [];
   idSite: string = '';
-  sitePhoto: string = '';
-  siteName: string = ''
   commentForm!: FormGroup;
   fb: FormBuilder = inject(FormBuilder);
   ngOnInit(): void {
     this.commentForm = this.fb.group({
-      content: ['', [Validators.required]],
-      author: ['', [Validators.required]],
+      content: ['', [Validators.required ,]],
+      author: ['', [Validators.required ,  Validators.pattern('^[A-Z].*') ]],
       rating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
       commentId: [''],
       date: ['']
@@ -47,22 +45,7 @@ export class SiteSelected implements OnInit {
     this.router.navigate(['/siteList'])
   }
 
-  lat!: number;
-  lon!: number;
 
-  getCoords(name: string) {
-    name = name.trim().replace(/ /g, '_');
-    this.siteService.getCoordinates(name).subscribe(data => {
-      if (data.coordinates) {
-        this.lat = data.coordinates.lat;
-        this.lon = data.coordinates.lon;
-        console.log(this.lat, this.lon);
-      } else {
-        console.log("Coordinates not found.");
-      }
-    });
-
-  }
   onSubmit() {
     this.commentForm.get('commentId')?.setValue((this.comments.length + 1).toString());
     const d = new Date();
@@ -82,13 +65,17 @@ export class SiteSelected implements OnInit {
     )
   }
 
-
-
-  // error => console.log('Error adding comment:', error)
-
   isInvalidRating() {
-    const price = this.commentForm.get('rating');
-    return price && price.invalid && price.touched && price.dirty;
+    const rating = this.commentForm.get('rating');
+    return rating  && rating.invalid && rating.touched ;
+  }
+   isInvalidAuthor() {
+    return this.commentForm.get('author')?.errors?.['pattern'] && this.commentForm.get('author')?.touched;
+  }
+  isInvalidcomment(){
+    const content=this.commentForm.get('content');
+    return content && content.invalid && content.touched;
+
   }
 
 

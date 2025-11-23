@@ -1,54 +1,56 @@
-:root {
-  /* Define CSS variables if they are used elsewhere in your application */
-  --background-color: #f8f9fa; /* Assuming a light background */
-  --card-background: #ffffff;
-  --border-color: #e9ecef;
-  --primary-color: #007bff; /* Blue */
-  --secondary-color: #6c757d; /* Gray */
-}
 
-body {
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+*{
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--background-color);
-  color: #343a40;
-  line-height: 1.6;
+
+
 }
 
-/* --- Navigation & Utilities --- */
 .back {
   background: none;
   border: none;
   margin-left: 1%;
   font-size: 2rem;
-  cursor: pointer; /* Added cursor for better UX */
+  cursor: pointer;
+    animation: fadeUp 0.7s ease forwards;
 }
-
-/* Bootstrap gap-5 is 3rem. No need to define gap-5 again if you rely on Bootstrap. */
-/* Keep these if you are NOT importing Bootstrap CSS or need custom widths */
 .col-md-5 {
   width: 41.666667%; 
+    animation: fadeUp 0.7s ease forwards;
 }
 
 .col-md-6 {
   width: 50%;
+    animation: fadeUp 0.7s ease forwards;
 }
 
-/* --- Carousel --- */
+
 #carouselExample {
-  /* Combined width and height settings */
   height: 56vh; 
   width: 40%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
 }
 
 .carousel-inner img {
   height: 60vh;
   object-fit: cover;
+  
+ 
 }
 
-/* --- Site Details Card --- */
+
 .site-details {
   padding-top: 1rem;
 }
@@ -60,6 +62,7 @@ body {
   box-shadow: 
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 8px 20px rgba(0, 0, 0, 0.12);
+     
 }
 
 .description-card h2 {
@@ -76,7 +79,7 @@ body {
   color: #495057;
 }
 
-/* --- Information Grid --- */
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -92,8 +95,6 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
-/* Status specific colors */
 .open {
   color: green;
   font-weight: 700;
@@ -104,17 +105,13 @@ body {
   font-weight: 700;
 }
 
-/* --- Comments Section Header --- */
 .mt-5 h3 { 
-  /* Targeting the h3 inside the main comments container */
   color: #212529;
   font-size: 1.8rem;
   font-weight: 600;
   border-bottom: 2px solid #dee2e6;
   padding-bottom: 0.5rem;
 }
-
-/* --- Comments Layout Container --- */
 .comments {
   display: flex;
   justify-content: space-between;
@@ -122,16 +119,13 @@ body {
   max-width: 950px;
   gap: 3rem;
   padding: 1.5rem 0;
-  /* align-items: flex-start !important; */ 
+   animation: fadeUp 0.7s ease forwards;
 }
 
-/* --- Existing Comments List (Left Side) --- */
 .comments > .flex-column:first-child {
   flex: 1;
   max-width: 60%;
 }
-
-/* Individual Comment Card */
 .comments > .flex-column:first-child > div {
   padding: 1rem;
   margin-bottom: 1rem;
@@ -142,7 +136,6 @@ body {
 }
 
 .comments h6 {
-  /* Adjusted font size for readability */
   font-size: 1rem; 
   font-weight: 600;
   color: #343a40;
@@ -161,15 +154,11 @@ body {
   margin-bottom: 0;
 }
 
-/* --- New Comment Form (Right Side) --- */
 .comments form {
-  /* Targeting the form directly instead of a generic d-flex flex-column */
   width: 300px;
   padding-top: 0.5rem;
   gap: 1rem;
 }
-
-/* Consolidated Input/Textarea Style */
 .comments input[type="text"],
 .comments input[type="number"],
 .comments textarea {
@@ -180,18 +169,13 @@ body {
   font-size: 1rem;
   color: #495057;
   transition: border-color 0.3s, box-shadow 0.3s;
-  /* Removed 'input[type="text"]' duplicates */
 }
-
-/* Input/Textarea Focus Style */
 .comments input:focus,
 .comments textarea:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   outline: none;
 }
-
-/* Button Style */
 .ADDCOMM {
   padding: 0.75rem 1rem;
   background-color: var(--primary-color);
@@ -209,11 +193,7 @@ body {
   background-color: #0056b3; 
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
-
-/* --- Responsive Adjustments (Consolidated) --- */
 @media (max-width: 768px) {
-  
-  /* Main content layout stack */
   .d-flex.gap-5 {
     flex-direction: column;
     gap: 2rem;
@@ -224,14 +204,12 @@ body {
     width: 100%;
     margin: 0;
   }
-
-  /* Carousel size adjustment */
   #carouselExample {
     width: 100%;
     height: 40vh;
   }
   .carousel-inner img {
-    height: 45vh; /* Adjust image height for smaller screens */
+    height: 45vh; 
   }
 
   .description-card {
@@ -239,68 +217,51 @@ body {
   }
 
   .info-grid {
-    grid-template-columns: 1fr; /* Single column */
+    grid-template-columns: 1fr; 
     gap: 1rem;
   }
-
-  /* Comments layout stack */
   .comments {
     flex-direction: column;
     align-items: stretch !important;
-    max-width: 90%; /* Adjust max-width for full screen on mobile */
+    max-width: 90%; 
     margin: 0 auto;
   }
   
-  /* Comments list and form use full width */
   .comments > .flex-column:first-child,
   .comments form {
     max-width: 100%;
     width: 100%;
   }
-
-  /* Ensure the comments list appears first */
   .comments > .flex-column:first-child {
     order: 1; 
   }
-  
-  /* Ensure the form appears after the comments list */
   .comments form {
     order: 2; 
   }
 }
-/* --- Input and Textarea Styles --- */
-
-/* Selects the input fields (text, number) and the textarea within the form */
 .comments form input[type="text"],
 .comments form input[type="number"],
 .comments form textarea {
-    /* Layout */
     width: 100%;
-    /* Appearance */
     padding: 0.75rem 1rem;
-    border: 1px solid #ced4da; /* Light gray border */
+    border: 1px solid #ced4da;
     border-radius: 6px;
     font-size: 1rem;
     color: #495057;
-    /* Animation/Focus */
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Focus State for Inputs and Textarea */
 .comments form input:focus,
 .comments form textarea:focus {
-    border-color: #007bff; /* Primary Blue border */
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Subtle blue glow */
+    border-color: #007bff; 
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
     outline: none;
 }
 
 
-/* --- "Add Comments" Button Style --- */
-
 .ADDCOMM {
-    /* Appearance and Text */
     padding: 0.75rem 1rem;
-    background-color: #007bff; /* Primary Blue */
+    background-color: #007bff; 
     color: white;
     border: none;
     border-radius: 6px;
@@ -308,7 +269,6 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
-    /* Animation/Hover */
     transition: background-color 0.2s, box-shadow 0.2s;
 }
 

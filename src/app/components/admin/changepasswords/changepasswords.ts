@@ -19,7 +19,7 @@ export class Changepasswords {
   newPassword: string = ''
   confirmPassword:string=''
   adminPassword() {
-  if (this.newPassword.length <= 6) {
+  if (!this.adminService.checkLength(this.newPassword, 6) ) {
     this.snackBar.open("New password must be longer than 6 characters!", "Close", {
       duration: 1500,
       verticalPosition: "top",
@@ -28,7 +28,7 @@ export class Changepasswords {
     return;
   }
 
-  if (this.newPassword !== this.confirmPassword) {
+  if (!this.adminService.confirmPassword(this.newPassword, this.confirmPassword)) {
     this.snackBar.open("New passwords do not match!", "Close", {
       duration: 1500,
       verticalPosition: "top",
@@ -44,8 +44,8 @@ export class Changepasswords {
           verticalPosition: "top",
           horizontalPosition: "left",
         });
-        this.currentPassword = '';
-        this.newPassword = '';
+        this.currentPassword ='';
+        this.newPassword ='';
         this.confirmPassword = '';
 
         this.router.navigate(["/admin"]);
@@ -59,45 +59,6 @@ export class Changepasswords {
       }
     });
 }
-
-
-// adminPassword() {
-//   if (!this.siteService.checkPassword(this.currentPassword)) {
-//     this.snackBar.open("Old password is incorrect!", "Close", {
-//       duration: 1500,
-//       verticalPosition: "top",
-//       horizontalPosition: "left",
-//     });
-//   }
-//   else if (this.newPassword.length <= 6) {
-//     this.snackBar.open("New password must be longer than 6 characters!", "Close", {
-//       duration: 1500,
-//       verticalPosition: "top",
-//       horizontalPosition: "left",
-//     });
-//   }
-//   else if (this.newPassword !== this.confirmPassword) {
-//     this.snackBar.open("New passwords do not match!", "Close", {
-//       duration: 1500,
-//       verticalPosition: "top",
-//       horizontalPosition: "left",
-//     });
-//   }
-//   else {
-//     this.siteService.setPassword(this.newPassword);
-//     this.snackBar.open("Password changed successfully!", "Close", {
-//       duration: 1500,
-//       verticalPosition: "top",
-//       horizontalPosition: "left",
-//     });
-
-//     this.currentPassword = '';
-//     this.newPassword = '';
-//     this.confirmPassword = '';
-//     this.router.navigate(["/admin"]);
-
-//   }
-// }
 
 }
 

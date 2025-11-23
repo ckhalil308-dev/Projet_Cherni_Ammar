@@ -52,9 +52,7 @@ researchSites() {
         siteItem.price >= this.minPrice
     );
   }
-  priceSlider() {
-    this.researchSites();
-  }
+ 
 }
   
 

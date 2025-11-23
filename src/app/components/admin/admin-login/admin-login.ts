@@ -14,9 +14,8 @@ export class AdminLogin {
   private readonly adminService:AdminService=inject(AdminService);
   private snackBar: MatSnackBar = inject(MatSnackBar);
   private readonly router:Router=inject(Router);
-  d:string='';
-  username:String='';
-  password:String=''; 
+  username:string='';
+  password:string=''; 
 
 login(){
  

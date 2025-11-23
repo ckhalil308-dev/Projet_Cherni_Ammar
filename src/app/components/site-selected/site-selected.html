@@ -21,11 +21,12 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    
 
   </div>
   <div class="site-details col-md-6 ">
     <div class="description-card">
-      <h2>Description:</h2>
+      <h2>{{sites[0].title}}</h2>
       <p class="description-text">{{ sites[0].description }}</p>
       <div class="info-grid">
         <div><span class="label">Status:</span>
@@ -73,13 +74,24 @@
     </div>
 
 
-    <form [formGroup]="commentForm" class="d-flex flex-column justify-content-center gap-3 " (ngSubmit)="onSubmit()">
-      <input formControlName="author" type="text" placeholder="enter your name and last name">
-      <input formControlName="rating" type="number" placeholder="enter your rating">
+    <form [formGroup]="commentForm" class="d-flex flex-column justify-content-center gap-3 " (ngSubmit)="onSubmit(); commentForm.reset()" novalidate>
+      <input formControlName="author" type="text" placeholder="Enter your name and last name">
+       @if (isInvalidAuthor()){
+      <div class="alert alert-danger">firsr letter must be uppercase </div>
+      }
+      @else if (this.commentForm.get('author')?.errors?.['required'] && this.commentForm.get('author')?.touched ) {
+           <div class="alert alert-danger">Author required </div>
+                }
+      <input formControlName="rating" type="number" placeholder="Enter your rating">
       @if (isInvalidRating()){
       <div class="alert alert-danger">Rating must be between 0 and 5.</div>
       }
-      <textarea formControlName="content" type="text" placeholder="ajouter un commentaire"></textarea>
+      <textarea formControlName="content" type="text" placeholder="Add comment"></textarea>
+       @if( isInvalidcomment()){
+      <div class="alert alert-danger">Comment required </div>
+      } 
+     
+      
       <input class=" btn  d-flex justify-content-center ADDCOMM" type="submit" value="Add comment"
         [disabled]="commentForm.invalid">
 
@@ -87,5 +99,4 @@
 
   </div>
 </div>
-<!-- <button type="button" (click)="getCoords(sites[0].title)">tester</button> -->
 <app-site-map [name]="sites[0].title"></app-site-map>

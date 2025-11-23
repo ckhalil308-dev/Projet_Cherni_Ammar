@@ -10,8 +10,13 @@ const apiAdminUrl = 'http://localhost:3000/admin';
 })
 export class AdminService {
   private readonly http: HttpClient = inject(HttpClient);
-
-  login(user: String, pass: String): Observable<Admin[]> {
+  confirmPassword(newPassword: string, confirmPassword: string): boolean {
+    return newPassword === confirmPassword;
+  }
+  checkLength(password: string, minLength: number): boolean {
+    return password.length > minLength;
+  }
+  login(user: string, pass: string): Observable<Admin[]> {
     return this.http.get<Admin[]>(`${apiAdminUrl}?username=${user}&password=${pass}`);
   }
   updatePassword(username: string, oldPassword: string, newPassword: string): Observable<string> {
@@ -20,6 +25,9 @@ export class AdminService {
       oldPassword,
       newPassword
     });
+  }
+  logout() {
+    localStorage.removeItem("role");
   }
 
 }

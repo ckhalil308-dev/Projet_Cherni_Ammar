@@ -12,8 +12,8 @@ import { AddSite } from './components/admin/add-site/add-site';
 import { guardGuard } from './guard-guard';
 import { EditSite } from './components/admin/edit-site/edit-site';
 import { SiteMap } from './components/site-map/site-map';
-import { ContactNav } from './contact-nav/contact-nav';
-import { FAQ } from './f.a.q/f.a.q';
+import { ContactNav } from './components/contact-nav/contact-nav';
+import { FAQ } from './components/f.a.q/f.a.q';
 
   
 

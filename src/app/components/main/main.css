@@ -1,0 +1,70 @@
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: #212529;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #6c757d;
+  text-align: center;
+  line-height: 1.6;
+}
+
+
+.sec2 {
+  width: 90%;
+  margin: 80px auto;
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sec2-img img {
+  width: 420px;
+  height: 45vh;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.sec2-img img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.sec2-text {
+  max-width: 500px;
+  color: #333;
+  line-height: 1.8;
+}
+
+.sec2-text h6 {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #444;
+  letter-spacing: 0.3px;
+}
+
+.sec2 strong {
+  font-weight: 600;
+  color: #000;
+}
+ .sec2 {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 2s linear;
+}
+
+.sec2.visible {
+  opacity: 1;
+  transform: translateY(0);
+} 

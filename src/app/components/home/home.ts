@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, inject } from '@angular/core';
 import { Features } from "../features/features";
+import { Main } from "../main/main";
 
 @Component({
   selector: 'app-home',
-  imports: [Features],
+  imports: [Features, Main],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

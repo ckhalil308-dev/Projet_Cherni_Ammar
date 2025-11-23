@@ -27,10 +27,8 @@ export class SiteMap implements AfterViewInit {
         this.lon = data.coordinates.lon;
         console.log(this.lat, this.lon);
 
-        // Create the map
         this.map = L.map('map').setView([this.lat, this.lon], 13);
 
-        // Add tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);

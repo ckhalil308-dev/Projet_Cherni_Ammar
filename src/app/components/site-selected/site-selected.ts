@@ -19,10 +19,10 @@
     private readonly router: Router = inject(Router);
     private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute)
     sites: Site[] = [];
-    galery: String[] = [];
+    gallery: string[] = [];
     commentes: Comment[] = [];
-    idSite: String = '';
-    sitePhoto: String = '';
+    idSite: string = '';
+    sitePhoto: string = '';
     siteName: string = ''
     commentForm!:FormGroup;
     fb:FormBuilder=inject(FormBuilder);
@@ -38,10 +38,8 @@
       this.siteService.getSites().subscribe(
         data => {
           this.sites = data.filter(site => site.id == this.idSite);
-          this.sitePhoto = this.sites[0].thumbnail
-          this.galery = this.sites[0].gallery || [];
+          this.gallery = this.sites[0].gallery || [];
           this.commentes = this.sites[0].comments || [];
-          this.siteName = this.sites[0].title;
         });
     }
 

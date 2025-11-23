@@ -36,13 +36,14 @@ export class EditSite implements OnInit {
       address: ['', [Validators.required]],
       price: [0, [Validators.required]],
       creation_date: ['', [Validators.required]],
+      isBC: [],
       rating: [0, [Validators.required]],
       openingHours: ['', [Validators.required]],
       visitorsPerYear: [0, [Validators.required]],
       description: ['', [Validators.required]],
       thumbnail: ['', [Validators.required]],
       gallery: this.formBuilder.array([]),
-      open: [false]
+      open: []
     });
 
     const idSite = this.activatedRoute.snapshot.params['idsite'];

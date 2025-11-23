@@ -11,5 +11,12 @@
 h2 {
     
   font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-
+color: #212529;
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: fit-content;
+  margin: 0 auto;
+  
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 0.5rem;
   }

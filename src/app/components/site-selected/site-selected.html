@@ -52,14 +52,15 @@
   </div>
 </div>
 
-<div class=" mt-5 d-flex flex-column align-items-center ">
+<div class=" mt-5 d-flex flex-column align-items-center">
   
   <h3>Comments</h3>
 
-  <div class="comments d-flex align-items-center">
+  <div class="comments d-flex align-items-center w-75">
 
     <div class=" flex-column ">
-      @for (item of comments; track $index) {
+      @if(comments.length > 0) {
+        @for (item of comments; track $index) {
       <div class="">
         <div class="d-flex justify-content-between">
           <div>
@@ -71,10 +72,14 @@
         <p class="mb-1">{{item.content}}</p>
       </div>
       }
+      }
+      @else {
+        <div>No comments yet. Be the first to comment!</div>
+      }
     </div>
 
 
-    <form [formGroup]="commentForm" class="d-flex flex-column justify-content-center gap-3 " (ngSubmit)="onSubmit(); commentForm.reset()" novalidate>
+    <form [formGroup]="commentForm" class="d-flex flex-column justify-content-center gap-3" (ngSubmit)="onSubmit(); commentForm.reset()" novalidate>
       <input formControlName="author" type="text" placeholder="Enter your name and last name">
        @if (isInvalidAuthor()){
       <div class="alert alert-danger">firsr letter must be uppercase </div>

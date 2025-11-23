@@ -5,7 +5,7 @@ import { Site } from '../model/site';
 import { Location } from '../model/location';
 import { Comment } from '../model/comment';
 
-// const apiUrl = 'http://localhost:3000/sites';
+//const apiUrl = 'http://localhost:3000/sites';
 const apiUrl = 'https://project-backend-5z3s.onrender.com/sites';
 
 @Injectable({

@@ -42,7 +42,7 @@
   }
 
   <div class="mb-3">
-    <label for="isBC"> <input  type="checkbox" name="isBC" formControlName="isBC" > B.C</label>
+    <label for="isBC"> <input  type="checkbox" name="isBC" formControlName="isBC" class="form-check-input m-1" style="transform: scale(1.5)"> B.C</label>
   </div>
 
   <div class="mb-3">
@@ -90,7 +90,7 @@
           <input (change)="onGallerySelected($event,$index)" class="form-control" type="file" id="formFileGallery">
         </div>
       }
-      <button class="btn btn-dark btn-sm" type="button"  (click)="addGallery()">Add Gallery Image</button>
+      <button class="btn btn-dark btn-sm  m-1" type="button"  (click)="addGallery()">Add Gallery Image</button>
     </div>
   </div>
   

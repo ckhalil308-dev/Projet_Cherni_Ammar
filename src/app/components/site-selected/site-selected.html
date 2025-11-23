@@ -1,127 +1,91 @@
 <div>
-
   <button class="back" (click)="returnToSites()"> <i class=" back bi bi-arrow-left"></i> </button>
-
 </div>
 
 <div class="d-flex gap-5 justify-content-center align-items-center">
-
   <div id="carouselExample" class=" ml-1 col-md-5 carousel slide ">
-
-
 
     <div class="carousel-inner">
       @for (item of gallery; track $index) {
-      <div class="carousel-item " [class.active]="$index==0" >
-
+      <div class="carousel-item " [class.active]="$index==0">
         <img [src]="gallery[$index]" class=" d-block w-100" alt="...">
-
       </div>}
-
-
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-
       <span class="visually-hidden">Previous</span>
-
     </button>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-
       <span class="visually-hidden">Next</span>
-
     </button>
 
   </div>
-
   <div class="site-details col-md-6 ">
-
     <div class="description-card">
-
       <h2>Description:</h2>
-
       <p class="description-text">{{ sites[0].description }}</p>
-
-
-
       <div class="info-grid">
         <div><span class="label">Status:</span>
-
           <span [class.open]="sites[0].open" [class.closed]="!sites[0].open">
-
             {{ sites[0].open ? 'Open' : 'Closed' }}
-
           </span>
 
         </div>
 
         <div class="adress"><span class="label">Address:</span> {{ sites[0].address }}</div>
 
-        
+
 
         <div><span class="label">Visitors/Year:</span> {{ sites[0].visitorsPerYear }}</div>
 
         <div><span class="label">Creation Date:</span> {{ sites[0].creation_date | year }} {{sites[0].isBC ?
           'B.C' : 'A.C'}}</div>
-
         <div><span class="label">Rating:</span> {{ sites[0].rating |stars}}</div>
-
         <div><span class="label">Era:</span> {{ sites[0].era }}</div>
-
         <div><span class="label">Opening Hours:</span> {{ sites[0].openingHours }}</div>
-
-
       </div>
-
     </div>
-
   </div>
-
 </div>
 
-  <div class=" mt-5 d-flex flex-column align-items-center ">
-
-    <h3>comments</h3>
-
-
-
-    <div class="comments d-flex align-items-center">
-    
-       <div class=" flex-column ">
-         @for (item of commentes; track $index) { 
-         <div class="">
-           <div class="d-flex justify-content-between" >
-         <div> <h6 class="mb-1">{{item.author}}</h6>
-           <small>{{item.date}}</small></div>
-           <div>{{item.rating|stars}}</div>
-           </div>
-            
-           <p class="mb-1">{{item.content}}</p>
-           
-          
-           </div>
-       }
-       </div>
+<div class=" mt-5 d-flex flex-column align-items-center ">
   
-  
-    <form  [formGroup]="commentForm"   class="d-flex flex-column   justify-content-center gap-3 "  (ngSubmit)="onSubmit()">
-      <input formControlName="author"  type="text" placeholder="enter your name and last name">
-      <input formControlName="rating"  type="number" placeholder="enter your rating" >
-        @if (isInvalidRating()){
-    <div class="alert alert-danger">Rating must be between 0 and 5.</div>
-  }
-      <textarea formControlName="content"  type="text" placeholder="ajouter un commentaire"></textarea>
-      <input class=" btn  d-flex justify-content-center ADDCOMM" type="submit" value=" add Comments" [disabled]="commentForm.invalid">
-       
+  <h3>Comments</h3>
 
-</form>
+  <div class="comments d-flex align-items-center">
 
+    <div class=" flex-column ">
+      @for (item of comments; track $index) {
+      <div class="">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h6 class="mb-1">{{item.author}}</h6>
+            <small>{{item.date}}</small>
+          </div>
+          <div>{{item.rating|stars}}</div>
+        </div>
+        <p class="mb-1">{{item.content}}</p>
       </div>
+      }
+    </div>
+
+
+    <form [formGroup]="commentForm" class="d-flex flex-column justify-content-center gap-3 " (ngSubmit)="onSubmit()">
+      <input formControlName="author" type="text" placeholder="enter your name and last name">
+      <input formControlName="rating" type="number" placeholder="enter your rating">
+      @if (isInvalidRating()){
+      <div class="alert alert-danger">Rating must be between 0 and 5.</div>
+      }
+      <textarea formControlName="content" type="text" placeholder="ajouter un commentaire"></textarea>
+      <input class=" btn  d-flex justify-content-center ADDCOMM" type="submit" value="Add comment"
+        [disabled]="commentForm.invalid">
+
+    </form>
+
   </div>
-  <!-- <button type="button" (click)="getCoords(sites[0].title)">tester</button> -->
-  <app-site-map></app-site-map>
+</div>
+<!-- <button type="button" (click)="getCoords(sites[0].title)">tester</button> -->
+<app-site-map [name]="sites[0].title"></app-site-map>

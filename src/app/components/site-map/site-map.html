@@ -1,13 +1,15 @@
 
 
 
-
+<div>
+  
 <h2>Geolocation with Leaflet</h2>
 
-@if(lat && lon) {
+@if(!lat) {
   <div>
-    Position found ! Latitude : {{ lat }}, Longitude : {{ lon }}
+    Position not found.
   </div>
 }
 
 <div id="map"></div>
+</div>

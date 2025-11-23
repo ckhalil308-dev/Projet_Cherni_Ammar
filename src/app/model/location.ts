@@ -4,3 +4,4 @@ export interface Location {
     lon: number;
   };
 }
+

@@ -14,8 +14,8 @@ export class AdminService {
   login(user: String, pass: String): Observable<Admin[]> {
     return this.http.get<Admin[]>(`${apiAdminUrl}?username=${user}&password=${pass}`);
   }
-  updatePassword(username: string, oldPassword: string, newPassword: string): Observable<any> {
-    return this.http.put<any>(`${apiAdminUrl}/password`, {
+  updatePassword(username: string, oldPassword: string, newPassword: string): Observable<string> {
+    return this.http.put<string>(`${apiAdminUrl}/password`, {
       username,
       oldPassword,
       newPassword

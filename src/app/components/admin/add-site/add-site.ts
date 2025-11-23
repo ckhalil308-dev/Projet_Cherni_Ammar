@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Site } from '../../../model/site';
 import { SitesService } from '../../../services/sites-service';
@@ -41,14 +41,22 @@ export class AddSite implements OnInit {
       visitorsPerYear: [200000, [Validators.required, Validators.min(0)]],
       description: ["Kerkouane is one of the best-preserved Punic cities in the Mediterranean. Unlike many other ancient towns in Tunisia, it was abandoned and never rebuilt by the Romans, giving a rare insight into Punic urban planning.", [Validators.required]],
       thumbnail: ["", Validators.required],
-      gallery: FormArray,
+      gallery: this.fb.array([]),
       open: [false]
     })
 
   }
 
+  public get gallery(){
+    return this.siteForm.get('gallery') as FormArray;
+  }
+
+  addGallery(){
+    this.gallery.push(this.fb.control(''));
+  }
+
   onSubmit() {
-    this.siteForm.get('id')?.setValue(this.sites.length + 1);
+    this.siteForm.get('id')?.setValue((this.sites.length + 1).toString());
     let s: Site = this.siteForm.value;
     this.sitesService.addSite(s).subscribe(
       data => {
@@ -72,24 +80,18 @@ export class AddSite implements OnInit {
       data => this.siteForm.get('thumbnail')?.setValue(data.url)
     )
   }
+onGallerySelected(event: any, index: number) {
+  const file = event.target.files[0];
+  if (!file) return;
 
-  onGallerySelected(e: any) {
-    const files: File[] = Array.from(e.target.files);
-    const urls: string[] = [];
+  const fd = new FormData();
+  fd.append('image', file);
 
-    files.forEach(
-      f => {
-        const fd = new FormData();
-        fd.append('image', f);
-        this.http.post<{ url: string }>('http://localhost:3000/upload', fd).subscribe(
-          data => {
-            urls.push(data.url);
-            if (urls.length === files.length) {
-              this.siteForm.get('gallery')?.setValue(urls);
-            }
-          })
-      })
-  }
+  this.http.post<{ url: string }>('http://localhost:3000/upload', fd)
+    .subscribe(res => {
+      this.gallery.at(index).setValue(res.url);
+    });
+}
 
   isInvalidTitle() {
     const title = this.siteForm.get('title');

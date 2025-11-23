@@ -1,7 +1,7 @@
 
-import { AfterViewInit, Component, inject } from '@angular/core';
-import * as L from 'leaflet';
+import { AfterViewInit, Component, inject, Input } from '@angular/core';
 import { SitesService } from '../../services/sites-service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-site-map',
@@ -13,43 +13,48 @@ export class SiteMap implements AfterViewInit {
 
   map!: L.Map;
   marker!: L.Circle;
+  @Input() name!: string;
 
-  // lat!: number;
-  // lon!: number;
-
-  lat: number = 36.42222222;
-  lon: number = 9.21833333;
-
-  // this.siteService.getCoordinates().subscribe(
-  //   data => {
-  //     if (data.coordinates) {
-  //       this.lat = data.coordinates.lat;
-  //       this.lon = data.coordinates.lon;
-  //     }
-  //   }
-  // )
+  lat!: number;
+  lon!: number;
 
   ngAfterViewInit() {
-    // Create the map
-    this.map = L.map('map').setView([this.lat, this.lon], 13);
 
-    // Add tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map);
+    this.name = this.name.trim().replace(/ /g, '_');
+    this.siteService.getCoordinates(this.name).subscribe(data => {
+      if (data.coordinates) {
+        this.lat = data.coordinates.lat;
+        this.lon = data.coordinates.lon;
+        console.log(this.lat, this.lon);
+
+        // Create the map
+        this.map = L.map('map').setView([this.lat, this.lon], 13);
+
+        // Add tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors'
+        }).addTo(this.map);
+
+        if (this.marker) {
+          this.map.removeLayer(this.marker);
+        }
+
+        this.marker = L.circle([this.lat, this.lon], {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: 200
+        }).addTo(this.map);
+
+      } else {
+      
+        console.log("Coordinates not found.");
+      }
+    });
 
 
-    if (this.marker) {
-    this.map.removeLayer(this.marker);
-  }
 
-  this.marker = L.circle([this.lat,this.lon], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 200
-  }).addTo(this.map);
-    
+
   }
 }
 

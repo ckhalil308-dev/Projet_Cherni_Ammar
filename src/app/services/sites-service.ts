@@ -42,6 +42,7 @@ export class SitesService {
   getCoordinates(name: string): Observable<Location> {
     return this.http.get<Location>(`https://en.wikipedia.org/api/rest_v1/page/summary/${name}`);
   }
+  
   addcomment(siteId: string, comment: Comment): Observable<Comment> {
     return this.http.post<Comment>(`${apiUrl}/${siteId}/comments`, comment);
   }

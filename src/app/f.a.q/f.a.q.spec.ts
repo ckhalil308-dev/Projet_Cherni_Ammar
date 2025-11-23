@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SiteNav } from './site-nav';
+import { FAQ } from './f.a.q';
 
-describe('SiteNav', () => {
-  let component: SiteNav;
-  let fixture: ComponentFixture<SiteNav>;
+describe('FAQ', () => {
+  let component: FAQ;
+  let fixture: ComponentFixture<FAQ>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SiteNav]
+      imports: [FAQ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SiteNav);
+    fixture = TestBed.createComponent(FAQ);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

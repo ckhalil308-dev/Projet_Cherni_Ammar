@@ -11,13 +11,26 @@ import { AdminComments } from './components/admin/admin-comments/admin-comments'
 import { AddSite } from './components/admin/add-site/add-site';
 import { guardGuard } from './guard-guard';
 import { EditSite } from './components/admin/edit-site/edit-site';
+import { SiteMap } from './components/site-map/site-map';
+import { ContactNav } from './contact-nav/contact-nav';
+import { FAQ } from './f.a.q/f.a.q';
 
   
 
 export const routes: Routes = [
       { path:'home', title:"Home", component: Home },
-      { path:'contact', title:"Contact", component:Contact},
-      { path:'siteList', title:"Sites", component:SiteList},
+      { path:'contact',title:"Contact", component:ContactNav,
+            children:[
+               { path:'contactForm', title:"Contact", component:Contact},
+               { path:'F.A.Q', title:"F.A.Q", component:FAQ},
+              { path:'',redirectTo:'contactForm', pathMatch:'full' },
+
+
+
+            ]
+      },  
+   
+      { path:'siteList', title:"Sites", component:SiteList},      
       { path:'siteselected/:idsite', title:"Sites", component:SiteSelected}, 
       { path:'admin', title:"Login", component:AdminLogin},
       { path:'admindash', title:"Dashboard", component:Admindashboard, canActivate:[guardGuard]},

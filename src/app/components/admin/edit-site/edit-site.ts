@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SitesService } from '../../../services/sites-service';
 import { HttpClient } from '@angular/common/http';
@@ -41,7 +41,7 @@ export class EditSite implements OnInit {
       visitorsPerYear: [0, [Validators.required]],
       description: ['', [Validators.required]],
       thumbnail: ['', [Validators.required]],
-      gallery: [[]],
+      gallery: this.formBuilder.array([]),
       open: [false]
     });
 
@@ -87,25 +87,26 @@ export class EditSite implements OnInit {
     )
   }
 
-  onGallerySelected(e: any) {
-    const files: File[] = Array.from(e.target.files);
-    const urls: string[] = [];
-
-    files.forEach(
-      file => {
-        const fd = new FormData();
-        fd.append('image', file);
-        this.http.post<{ url: string }>('http://localhost:3000/upload', fd).subscribe(
-          data => {
-            urls.push(data.url);
-            if (urls.length === files.length) {
-              this.siteForm.get('gallery')?.setValue(urls);
-            }
-          }
-        )
-      }
-    )
+  
+  public get gallery(){
+    return this.siteForm.get('gallery') as FormArray;
   }
+
+  addGallery(){
+    this.gallery.push(this.formBuilder.control(''));
+  }
+  onGallerySelected(event: any, index: number) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const fd = new FormData();
+  fd.append('image', file);
+
+  this.http.post<{ url: string }>('http://localhost:3000/upload', fd)
+    .subscribe(res => {
+      this.gallery.at(index).setValue(res.url);
+    });
+}
     isInvalidTitle() {
     const title = this.siteForm.get('title');
     return title && title.invalid && title.touched;

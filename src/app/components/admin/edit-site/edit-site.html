@@ -83,8 +83,15 @@
   </div>
 
   <div class="mb-3">
-    <label for="formFileMultiple" class="form-label">Gallery</label>
-    <input (change)="onGallerySelected($event)" class="form-control" type="file" id="formFileMultiple" multiple>
+    <label class="form-label" for="formFileGallery">Gallery</label>
+    <div formArrayName="gallery">
+      @for(g of gallery.controls; track $index){
+        <div>Image {{$index+1}}
+          <input (change)="onGallerySelected($event,$index)" class="form-control" type="file" id="formFileGallery">
+        </div>
+      }
+      <button type="button"  (click)="addGallery()">Add Gallery Image</button>
+    </div>
   </div>
   
   <div class=" mb-3">
